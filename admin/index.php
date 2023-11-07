@@ -25,11 +25,19 @@ ob_start();
     <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
         <?php
-
+        include './components/pdo.php';
+        include './comment/comment.php';
+        include './user/users.php';
+        include './include/data.php';
+        include './category/categorys.php';
 
         $action = "home";
         if (isset($_GET['page']))
             $action = $_GET['page'];
+
+        if (!isset($_SESSION['admin'])) {
+            $action = "login";
+        }
         switch ($action) {
             case "home":
                 include './home.php';
@@ -60,6 +68,10 @@ ob_start();
 
             case 'listuser':
                 include './user/list.php';
+                break;
+
+            case 'login':
+                include './components/login.php';
                 break;
 
             case "users":

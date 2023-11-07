@@ -2,53 +2,70 @@
 
 class data
 {
+    var $id = null;
+    var $name = null;
+    var $email = null;
 
-    var $ten_loai = null;
-    var $ma_loai = null;
+    var $password = null;
+    var $images = null;
 
-    //Hiển thị bảng
-    public function getList()
+    var $role = null;
+
+    function getUser()
     {
-        $pdo = new connect();
-        $sql = 'SELECT * FROM loai';
-        $result = $pdo->pdo_query($sql);
+        $db = new connect();
+        $select = "select * from users";
+        return $db->pdo_query($select);
+    }
+
+    public function checkUser($name, $password)
+    {
+        $db = new connect();
+        $select = "select * from users where name='$name' and password='$password'";
+        $result = $db->pdo_query_one($select);
+        if ($result != null)
+            return true;
+        else
+            return false;
+    }
+
+    public function userid($name, $password)
+    {
+        $db = new connect();
+        $select = "select id from users where name='$name' and password='$password'";
+        $result = $db->pdo_query_one($select);
         return $result;
     }
 
-    //Hiển thị mã
-    public function getById($ma_loai)
+    public function getInfoById($name)
     {
-        $pdo = new connect();
-        $sql = 'SELECT * FROM loai WHERE ma_loai  = ' . $ma_loai;
-        $result = $pdo->pdo_query_one($sql);
+        $db = new connect();
+        $select = "select * from users where name='$name'";
+        $result = $db->pdo_query($select);
+        //   $quest = $result->fetch();
         return $result;
     }
 
-    //Edit
-    public function getupdate($ma_loai, $ten_loai)
+    function insertUser($tmpUsername, $tmpPassword, $tmpName, $tmpEmail, $tmpPermisions, $tmpPhone)
     {
-        $pdo = new connect();
-        $sql = "UPDATE loai SET ma_loai = '$ma_loai', ten_loai = '$ten_loai' WHERE ma_loai = " . $ma_loai;
-        $result = $pdo->pdo_execute($sql);
-        return $result;
+        $db = new connect();
+        $query = "INSERT INTO users(UserID,Username,Password,FullName,Email ,Permissions, Avatar,Address,Phone) VALUES (NULL,'$tmpUsername','$tmpPassword','$tmpName','$tmpEmail','$tmpPermisions','','',$tmpPhone)";
+        $db->pdo_execute($query);
     }
 
-    //Add
-    public function getAdd($ten_loai)
+    function updateUser($tmpUsername, $tmpPassword, $tmpName, $tmpEmail)
     {
-        $pdo = new connect();
-        $sql = "INSERT INTO loai (`ten_loai`) VALUES ('$ten_loai')";
-        $result = $pdo->pdo_query($sql);
-        return $result;
+        $db = new connect();
+        $query = "update users set Password='$tmpPassword',Username='$tmpName',Email='$tmpEmail' where Username='$tmpUsername'";
+        $db->pdo_execute($query);
     }
 
-    //Xóa
-    public function getDeLeTe($ma_loai)
+    function deleteUser($id)
     {
-        $pdo = new connect();
-        $sql = 'DELETE FROM loai WHERE ma_loai  =' . $ma_loai;
-        $result = $pdo->pdo_query_one($sql);
-        return $result;
+        $db = new connect();
+        $query = "delete from users where UserName = '$id'";
+        $db->pdo_execute($query);
     }
-
 }
+
+?>
