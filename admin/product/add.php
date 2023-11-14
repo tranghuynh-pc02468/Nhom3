@@ -69,16 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <h1 class="m-0">Sản Phẩm</h1>
                     </div>
-                    <div class="col-sm-4">
-                        <?php
-                        if (isset($mgs)) {
-                            echo $mgs;
-                        }
-                        ?>
-                    </div>
+
                 </div>
             </div>
         </div>
