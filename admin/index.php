@@ -22,14 +22,18 @@ ob_start();
 
     </head>
 
-    <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-    <div class="wrapper">
-        <?php
-        include './components/pdo.php';
-        include './comment/comment.php';
-        include './user/users.php';
-        include './include/data.php';
-        include './category/categorys.php';
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div class="wrapper">
+    <?php
+    include "../admin/components/pdo.php";
+    include "../admin/product/products.php";
+    include "../admin/category/category.php";
+    include "../admin/sizes/size.php";
+    include './components/pdo.php';
+    include './comment/comment.php';
+    include './user/users.php';
+    include './include/data.php';
+//        include './category/categorys.php';
 
         $action = "home";
         if (isset($_GET['page']))
