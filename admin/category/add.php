@@ -22,34 +22,21 @@ include "components/sidebar.php";
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Quick Example</h3>
+                                <h3 class="card-title">Thêm Mới</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form>
+                            <form action="index.php?act=listcategory" method="post">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="email">Email address</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                        <label for="email">Mã danh mục</label>
+                                        <input type="text" disabled name="id" class="form-control" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password"
-                                               placeholder="Password">
+                                        <label for="email">Tên danh mục</label>
+                                        <input type="text" class="form-control" name="name">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputFile">File input</label>
-                                        <div class="input-group">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                                <label class="custom-file-label" for="exampleInputFile">Choose
-                                                    file</label>
-                                            </div>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">Upload</span>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                         <label class="form-check-label" for="exampleCheck1">Check me out</label>
@@ -58,7 +45,7 @@ include "components/sidebar.php";
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                    <button type="submit" name="themmoi" class="btn btn-primary">Thêm mới</button>
                                     <a href="index.php?page=listcategory" type="reset" class="btn btn-primary">Hủy</a>
                                 </div>
                             </form>
