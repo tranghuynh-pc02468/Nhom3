@@ -23,7 +23,7 @@ include "components/sidebar.php";
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Fixed Header Table</h3>
+                                    <h3 class="card-title">Bảng danh mục</h3>
 
                                     <div class="card-tools">
                                         <div class="input-group input-group-sm" style="width: 150px;">
@@ -36,7 +36,7 @@ include "components/sidebar.php";
                                     </div>
                                 </div>
                                 <!-- /.card-header -->
-                                <div class="card-body table-responsive p-0" style="height: 300px;">
+                                <div class="card-body table-responsive p-0" style="height: 470px;">
                                     <table class="table table-head-fixed text-nowrap">
                                         <thead>
                                         <tr>
@@ -48,16 +48,27 @@ include "components/sidebar.php";
                                         </thead>
                                         <tbody>
                                         <?php
+                                        $db= new category();
+                                        $add= $db->getList();
+                                        foreach ($add as $list){
+                                            extract($list);
+                                            echo'
+                                                    <tr>
+                                                    <td>'.$id.'</td>
+                                                    <td>'.$name.'</td>
+                                                    <td>
+                                                    <a href="index.php?page=editcategory&id='.$id.'" class="btn btn-primary">Sửa</a>
+                                                    <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href="index.php?page=delcategory&id=' .$id. '" type="button" class="btn btn-danger">Xóa</a>
+                                                    </td>
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    </tr>
+                                                ';
 
-                                        echo '
-                                        <tr>
-                                        <td>183</td>
-                                        <td>John Doe</td>
-                                        <td>
-                                            <a href="index.php?page=editcategory" class="btn btn-primary">Sửa</a>
-                                            <a href="" class="btn btn-danger">Xóa</a>
-                                        </td>
-                                        </tr>';
+
+                                        }
 
                                         ?>
 

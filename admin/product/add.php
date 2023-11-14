@@ -169,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                             <input type="hidden" name="views" value="0">
                                             <div class="form-group col-12">
                                                 <label for="" class="form-label">Mô tả</label>
-                                                <textarea name="content" class="form-control" rows="10"></textarea>
+                                                <textarea name="content" id="summernote" class="form-control" rows="10"></textarea>
                                                 <?php
                                                 if (isset($error_content)) {
                                                     echo '<small class="text-danger">' . $error_content . '</small>';

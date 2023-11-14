@@ -2,6 +2,27 @@
 include "components/header.php";
 include "components/sidebar.php";
 ?>
+
+<?php
+if(isset($_POST['themmoi']) && ($_POST['themmoi'])){
+    //lay dl tu form
+    $name = $_POST['name'] ?? "";
+
+    // kt loi
+    if(empty($name)){
+        $error_name = "Vui lòng không bỏ trống";
+    }else{
+        $db = new category();
+        $db -> getAdd($name);
+        $mgs = "them thanh cong";
+        header('location: index.php?page=listcategory');
+    }
+
+
+
+}
+
+?>
 <div class="wrapper">
     <div class="content-wrapper">
         <div class="content-header">
@@ -20,34 +41,40 @@ include "components/sidebar.php";
                 <div class="row">
                     <div class="col-md-12">
                         <!-- general form elements -->
-                        <div class="card card-primary">
+                        <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Thêm Mới</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="index.php?act=listcategory" method="post">
+                            <form  method="post">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="email">Mã danh mục</label>
-                                        <input type="text" disabled name="id" class="form-control" >
+                                        <input type="text" disabled name="id" class="form-control " placeholder="Mục này không được nhập">
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Tên danh mục</label>
                                         <input type="text" class="form-control" name="name">
+                                        <?php
+                                        // ktra neu $error_name ton tai thi in 1 dong bao loi
+                                        if(isset($error_name)){
+                                            echo '<small class="text-danger"> '.$error_name.' </small>';
+                                        }
+
+                                        ?>
+
                                     </div>
 
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                    </div>
-                                </div>
-                                <!-- /.card-body -->
 
-                                <div class="card-footer">
-                                    <button type="submit" name="themmoi" class="btn btn-primary">Thêm mới</button>
-                                    <a href="index.php?page=listcategory" type="reset" class="btn btn-primary">Hủy</a>
-                                </div>
+                                    <!-- /.card-body -->
+
+                                    <div class="card-footer">
+                                        <input type="submit" name="themmoi" class="btn btn-primary" value="Thêm Mới">
+                                        <button  type="reset" class="btn btn-primary">Nhập lại</button>
+                                        <a href="index.php?page=listcategory" type="reset" class="btn btn-primary">Hủy bỏ</a>
+                                    </div>
+
                             </form>
                         </div>
                         <!-- /.card -->
