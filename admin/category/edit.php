@@ -2,34 +2,28 @@
 include "components/header.php";
 include "components/sidebar.php";
 ?>
-
 <?php
-if(isset($_POST['themmoi']) && ($_POST['themmoi'])){
-    //lay dl tu form
-    $name = $_POST['name'] ?? "";
-
-    // kt loi
-    if(empty($name)){
-        $error_name = "Vui lòng không bỏ trống";
-    }else{
-        $db = new category();
-        $db -> getAdd($name);
-        $mgs = "them thanh cong";
-        header('location: index.php?page=listcategory');
-    }
-
-
+$id=$_GET['id']??'';
+if(!empty('$id')){
+    $db= new category();
+    $list = $db->getById( $id);
 
 }
 
+if(isset($_POST['capnhat']) && ($_POST['capnhat'])){
+    //lay dl tu form
+    $name = $_POST['name'] ?? "";
+}
+
 ?>
+
 <div class="wrapper">
     <div class="content-wrapper">
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Loại hàng hóa</h1>
+                        <h1 class="m-0"> Cập Nhật Loại Hàng Hóa</h1>
                     </div>
 
                 </div>
@@ -43,7 +37,7 @@ if(isset($_POST['themmoi']) && ($_POST['themmoi'])){
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Thêm Mới</h3>
+                                <h3 class="card-title">Cập nhập loại hàng</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -51,28 +45,20 @@ if(isset($_POST['themmoi']) && ($_POST['themmoi'])){
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="email">Mã danh mục</label>
-                                        <input type="text" disabled name="id" class="form-control " placeholder="Mục này không được nhập">
+                                        <input type="text" disabled name="id" class="form-control" placeholder="Mục này không được nhập">
                                     </div>
                                     <div class="form-group">
-                                        <label for="email">Tên danh mục</label>
-                                        <input type="text" class="form-control" name="name">
-                                        <?php
-                                        // ktra neu $error_name ton tai thi in 1 dong bao loi
-                                        if(isset($error_name)){
-                                            echo '<small class="text-danger"> '.$error_name.' </small>';
-                                        }
-
-                                        ?>
-
+                                        <label>Tên danh mục</label>
+                                        <input type="text" class="form-control" name="name" value="<?=$list['name']?>">
                                     </div>
 
 
                                     <!-- /.card-body -->
 
                                     <div class="card-footer">
-                                        <input type="submit" name="themmoi" class="btn btn-primary" value="Thêm Mới">
+                                        <input type="submit" name="capnhat" class="btn btn-primary" value="Cập Nhật">
                                         <button  type="reset" class="btn btn-primary">Nhập lại</button>
-                                        <a href="index.php?page=listcategory" type="reset" class="btn btn-primary">Hủy bỏ</a>
+                                        <a class="btn btn-primary" href="index.php?page=listcategory">Hủy bỏ</a>
                                     </div>
 
                             </form>
@@ -90,3 +76,13 @@ if(isset($_POST['themmoi']) && ($_POST['themmoi'])){
 
 </div>
 <?php include 'components/footer.php' ?>
+<?php
+if(isset($_POST['capnhat'])) {
+    $id=$_GET['id'];
+    $name=$_POST['name'];
+    $db = new category();
+    $db->getupdate($id, $name);
+    header('location:index.php?page=listcategory');
+}
+
+?>

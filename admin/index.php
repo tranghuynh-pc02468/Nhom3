@@ -2,6 +2,7 @@
 session_start();
 ob_start();
 ?>
+
     <!DOCTYPE html>
     <html lang="en">
 
@@ -11,8 +12,7 @@ ob_start();
         <title>AdminLTE 3 | Dashboard 2</title>
 
         <!-- Google Font: Source Sans Pro -->
-        <link rel="stylesheet"
-              href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
         <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
         <!-- overlayScrollbars -->
@@ -22,26 +22,16 @@ ob_start();
 
     </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-  <div class="wrapper">
-    <?php
-    include "../admin/components/pdo.php";
-    include "../admin/product/products.php";
-    include "../admin/category/category.php";
-    include "../admin/sizes/size.php";
-    include './components/pdo.php';
-    include './comment/comment.php';
-    include './user/users.php';
-    include './include/data.php';
-//        include './category/categorys.php';
+    <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        <?php
+        include './dao/pdo.php';
+        include './category/category.php';
+
 
         $action = "home";
         if (isset($_GET['page']))
             $action = $_GET['page'];
-
-        if (!isset($_SESSION['admin'])) {
-            $action = "login";
-        }
         switch ($action) {
             case "home":
                 include './home.php';
@@ -51,6 +41,12 @@ ob_start();
                 break;
             case "addcategory":
                 include './category/add.php';
+                break;
+            case "editcategory":
+                include './category/edit.php';
+                break;
+            case "delcategory":
+                include './category/del.php';
                 break;
 
 
@@ -74,10 +70,6 @@ ob_start();
                 include './user/list.php';
                 break;
 
-            case 'login':
-                include './components/login.php';
-                break;
-
             case "users":
                 include './users/user.php';
                 break;
@@ -86,6 +78,8 @@ ob_start();
                 break;
         }
         ?>
+
+
 
 
     </div>
