@@ -31,7 +31,7 @@ class category{
     public function getAdd($name){
         $pdo = new connect();
         $sql = "INSERT INTO categories (`name`) VALUES ('$name')";
-        $result = $pdo->pdo_query($sql);
+        $result = $pdo->pdo_execute($sql);
         return $result;
     }
 
@@ -39,7 +39,7 @@ class category{
     public function getDeLeTe($id){
         $pdo = new connect();
         $sql = 'DELETE FROM categories WHERE id  ='.$id;
-        $result = $pdo->pdo_query_one($sql);
+        $result = $pdo->pdo_execute($sql);
         return $result;
     }
 
