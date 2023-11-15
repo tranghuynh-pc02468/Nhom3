@@ -16,6 +16,14 @@ class product{
         return $result;
     }
 
+    public function getListhome()
+    {
+        $pdo = new connect();
+        $sql = "SELECT * FROM products limit 8";
+        $result = $pdo->pdo_query($sql);
+        return $result;
+    }
+
     //Hiển thị mã
     public function getById($id)
     {
