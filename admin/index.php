@@ -68,6 +68,12 @@ ob_start();
             case 'addpro':
                 include './product/add.php';
                 break;
+            case 'editpro':
+                include './product/edit.php';
+                break;
+            case 'delpro':
+                include './product/del.php';
+                break;
 
 
             case 'listcomment':

@@ -9,7 +9,7 @@ if (!empty($id)) {
     $product = new product();
     $result = $product->getById($id);
     extract($result);
-    var_dump($result);
+//    var_dump($result);
 
 
 }
@@ -165,16 +165,3 @@ if (isset($_POST['editpro'])) {
 
 </div>
 <?php include 'components/footer.php' ?>
-<?php
-if (isset($_POST['edit_pro'])) {
-    $id = $_GET['id'];
-    $name = $_POST['name'];
-    $name = $_POST['price'];
-    $name = $_POST['image'];
-    $name = $_POST['content'];
-    $db = new product();
-    $db->getupdate($id, $category_id, $name, $price, $image, $content, $views);
-    header('location:index.php?page=listpro');
-}
-
-?>
