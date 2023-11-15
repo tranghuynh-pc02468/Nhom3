@@ -43,10 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $error_image = "Vui lòng chọn ảnh";
     }
 
-    // kt loi k chon danh muc
-    if (empty($category_id)) {
-        $error_category = "Vui lòng chọn danh mục";
-    }
+
 
     // var_dump($name, $price, $image, $category_id, $content);
     if (!isset($error_name) && !isset($error_price) && !isset($error_size) && !isset($error_category) && !isset($error_content) && !isset($error_image)) {

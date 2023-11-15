@@ -41,7 +41,7 @@
                                     <thead>
                                         <tr>
                                             
-                                            <th>STT</th>
+                                            <th>ID</th>
                                             <th>Size</th>
                                             <th></th>
                                             

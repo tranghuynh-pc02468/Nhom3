@@ -77,6 +77,12 @@
                         <p>Khách Hàng</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="index.php?page=listsize" class="nav-link">
+                        <i class="nav-icon far fa-circle text-warning"></i>
+                        <p>Size</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
