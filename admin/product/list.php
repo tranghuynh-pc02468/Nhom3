@@ -72,8 +72,8 @@
                                                     <img src=" '.$img_path.$image.' " style="width:100px">
                                                  </td>
                                                 <td>
-                                                    <a href="?page=edit_pro&id=' .$id. '" class="btn btn-primary">Sửa</a>
-                                                    <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href="index.php?page=del_pro&id=' .$id. '" type="button" class="btn btn-danger">Xóa</a>
+                                                    <a href="?page=editpro&id=' . $id . '" class="btn btn-primary">Sửa</a>
+                                                    <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href="index.php?page=delpro&id=' . $id . '" type="button" class="btn btn-danger">Xóa</a>
                                                 </td>
                                             </tr>';
                                             $i++;
