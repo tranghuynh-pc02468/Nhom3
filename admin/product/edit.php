@@ -124,7 +124,7 @@ if (isset($_POST['editpro'])) {
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="name">Tên Sản Phẩm</label>
-                                            <input type="text" class="form-control" name="name" value="<?= $name ?>">
+                                            <input type="text" class="form-control" name="name" value="<?= $name_product ?>">
                                             <?php
                                             if (isset($error_name)) {
                                                 echo '<small class="text-danger">' . $error_name . '</small>';
@@ -133,7 +133,7 @@ if (isset($_POST['editpro'])) {
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="price">Giá</label>
-                                            <input type="text" class="form-control" name="price" value="<?= $price ?>">
+                                            <input type="text" class="form-control" name="price" value="<?= number_format($price) ?>">
                                             <?php
                                             if (isset($error_price)) {
                                                 echo '<small class="text-danger">' . $error_price . '</small>';
