@@ -105,83 +105,83 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                                 echo '<small class="text-danger">' . $error_category . '</small>';
                                             }
                                             ?>
-                                            </div>
-                                            <div class="form-group col-6">
-                                                <label for="name">Tên Sản Phẩm</label>
-                                                <input type="text" class="form-control" name="name">
-                                                <?php
-                                                if (isset($error_name)) {
-                                                    echo '<small class="text-danger">' . $error_name . '</small>';
-                                                }
-                                                ?>
-                                            </div>
-                                            <div class="form-group col-6">
-                                                <label for="price">Giá</label>
-                                                <input type="text" class="form-control" name="price">
-                                                <?php
-                                                if (isset($error_price)) {
-                                                    echo '<small class="text-danger">' . $error_price . '</small>';
-                                                }
-                                                ?>
-                                            </div>
-                                            <div class="form-group col-6">
-                                                <label for="price">Size</label>
-                                                <select class="selectpicker form-control border" name="size_id" multiple
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="name">Tên Sản Phẩm</label>
+                                            <input type="text" class="form-control" name="name">
+                                            <?php
+                                            if (isset($error_name)) {
+                                                echo '<small class="text-danger">' . $error_name . '</small>';
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="price">Giá</label>
+                                            <input type="text" class="form-control" name="price">
+                                            <?php
+                                            if (isset($error_price)) {
+                                                echo '<small class="text-danger">' . $error_price . '</small>';
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="price">Size</label>
+                                            <select class="selectpicker form-control border" name="size_id" multiple
                                                     title="Chọn size giày">
-                                                    <?php
-                                                    $db = new sizes();
-                                                    $list = $db->getList();
-                                                    foreach ($list as $item) {
-                                                        extract($item);
-                                                        echo '<option value="' . $id . '">' . $name . '</option>';
-                                                    }
-                                                    ?>
-
-                                                </select>
                                                 <?php
-                                                if (isset($error_size)) {
-                                                    echo '<small class="text-danger">' . $error_size . '</small>';
+                                                $db = new sizes();
+                                                $list = $db->getList();
+                                                foreach ($list as $item) {
+                                                    extract($item);
+                                                    echo '<option value="' . $id . '">' . $name . '</option>';
                                                 }
                                                 ?>
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="exampleInputFile">Hình Ảnh</label>
-                                                <div class="input-group">
-                                                    <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" name="image">
-                                                        <label class="custom-file-label" for="exampleInputFile">Choose
-                                                            file</label>
 
-                                                    </div>
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text">Upload</span>
-                                                    </div>
+                                            </select>
+                                            <?php
+                                            if (isset($error_size)) {
+                                                echo '<small class="text-danger">' . $error_size . '</small>';
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <label for="exampleInputFile">Hình Ảnh</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="image">
+                                                    <label class="custom-file-label" for="exampleInputFile">Choose
+                                                        file</label>
+
                                                 </div>
-                                                <?php
-                                                if (isset($error_image)) {
-                                                    echo '<small class="text-danger">' . $error_image . '</small>';
-                                                }
-                                                ?>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">Upload</span>
+                                                </div>
                                             </div>
-                                            <input type="hidden" name="views" value="0">
-                                            <div class="form-group col-12">
-                                                <label for="" class="form-label">Mô tả</label>
-                                                <textarea name="content" id="summernote" class="form-control" rows="10"></textarea>
-                                                <?php
-                                                if (isset($error_content)) {
-                                                    echo '<small class="text-danger">' . $error_content . '</small>';
-                                                }
-                                                ?>
-                                            </div>
+                                            <?php
+                                            if (isset($error_image)) {
+                                                echo '<small class="text-danger">' . $error_image . '</small>';
+                                            }
+                                            ?>
                                         </div>
-                                        <!-- /.card-body -->
+                                        <input type="hidden" name="views" value="0">
+                                        <div class="form-group col-12">
+                                            <label for="" class="form-label">Mô tả</label>
+                                            <textarea name="content" id="summernote" class="form-control" rows="10"></textarea>
+                                            <?php
+                                            if (isset($error_content)) {
+                                                echo '<small class="text-danger">' . $error_content . '</small>';
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
 
-                                        <div class="card-footer">
-                                            <!-- <input type="submit" class="btn btn-primary" value="Thêm" name="addpro"> -->
-                                            <button type="submit" class="btn btn-primary">Thêm</button>
-                                            <button type="reset" class="btn btn-primary">Huỷ</button>
-                                            <a href="index.php?page=listpro" class="btn btn-primary">Danh Sách</a>
-                                        </div>
+                                    <div class="card-footer">
+                                        <!-- <input type="submit" class="btn btn-primary" value="Thêm" name="addpro"> -->
+                                        <button type="submit" class="btn btn-primary">Thêm</button>
+                                        <button type="reset" class="btn btn-primary">Huỷ</button>
+                                        <a href="index.php?page=listpro" class="btn btn-primary">Danh Sách</a>
+                                    </div>
                                 </form>
                             </div>
                         </div>

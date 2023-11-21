@@ -23,11 +23,11 @@ if (isset($_POST['editpro'])) {
     $views = 0;
 
     // kt loi ten
-    if (empty($name)) {
+    if (isset($name)) {
         $error_name = 'Vui lòng nhập thông tin';
     }
 // lt loi gia
-    if (empty($price)) {
+    if (isset($price)) {
         $error_price = "Vui lòng không bỏ trống giá";
     } else {
         $pattern = '/[a-z]/';
@@ -40,7 +40,7 @@ if (isset($_POST['editpro'])) {
         $error_size = 'Vui lòng chọn size';
     }
 // kt loi k chon danh muc
-    if (empty($category_id)) {
+    if (isset($category_id)) {
         $error_category = "Vui lòng chọn danh mục";
     }
 // kt loi k nhap content
@@ -143,7 +143,7 @@ if (isset($_POST['editpro'])) {
                                         <div class="form-group col-6">
                                             <label for="price">Size</label>
                                             <select class="selectpicker form-control border" name="size_id" multiple
-                                                title="Chọn size giày">
+                                                    title="Chọn size giày">
                                                 <?php
                                                 $db = new sizes();
                                                 $list = $db->getList();

@@ -2,15 +2,17 @@
 class sizes{
     var $id = null;
     var $name = null;
-    
+
     //Hiển thị bảng
     public function getList()
     {
         $pdo = new connect();
-        $sql = 'SELECT * FROM sizes';
+        $sql = "SELECT * FROM sizes
+                ORDER BY id DESC";
         $result = $pdo->pdo_query($sql);
         return $result;
     }
+
 
     //Hiển thị mã
     public function getById($id)

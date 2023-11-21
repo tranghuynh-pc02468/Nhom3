@@ -19,7 +19,7 @@ class product{
     public function getListhome()
     {
         $pdo = new connect();
-        $sql = "SELECT * FROM products limit 8";
+        $sql = "SELECT * FROM products limit 9";
         $result = $pdo->pdo_query($sql);
         return $result;
     }
@@ -59,7 +59,7 @@ class product{
         return $result;
     }
 
-    
+
 
 
 
