@@ -108,6 +108,10 @@ ob_start();
             case 'listuser':
                 include './user/list.php';
                 break;
+            case 'deleteuser':
+                include './user/delete.php';
+                break;
+
             case 'login':
                 include './components/login.php';
                 break;
