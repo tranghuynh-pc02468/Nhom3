@@ -8,8 +8,15 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <h1 class="m-0">Sản Phẩm</h1>
+                    </div>
+                    <div class="col-sm-4">
+                        <?php
+                            if(isset($mgs)) {
+                                echo $mgs;
+                            }
+                        ?>
                     </div>
 
                 </div>
@@ -36,7 +43,7 @@
                                 </div>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body table-responsive p-0" style="height: 300px;">
+                            <div class="card-body table-responsive p-0" style="height: 470px;">
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
                                         <tr>
@@ -44,7 +51,6 @@
                                             <th>Tên Sản Phẩm</th>
                                             <th>Giá Sản Phẩm</th>
                                             <th>Hình Ảnh</th>
-                                            <th>Size</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -55,14 +61,19 @@
                                             $i = 1;
                                             foreach($add as $list) {
                                                 extract($list);
+                                                // var_dump($list);
                                                 echo '<tr>
+
+
                                                 <td>'.$id.'</td>
                                                 <td>'.$name.'</td>
                                                 <td>'.number_format($price).' đ</td>
-                                                <td>'.$image.'</td>
                                                 <td>
-                                                    <a href="?page=edit_pro" class="btn btn-primary">Sửa</a>
-                                                    <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href="index.php?page=del_pro&id=' .$id. '" type="button" class="btn btn-danger">Xóa</a>
+                                                    <img src=" '.$img_path.$image.' " style="width:100px">
+                                                 </td>
+                                                <td>
+                                                    <a href="?page=editpro&id=' . $id . '" class="btn btn-primary">Sửa</a>
+                                                    <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href="index.php?page=delpro&id=' . $id . '" type="button" class="btn btn-danger">Xóa</a>
                                                 </td>
                                             </tr>';
                                             $i++;

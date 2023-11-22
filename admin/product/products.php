@@ -11,7 +11,15 @@ class product{
     public function getList()
     {
         $pdo = new connect();
-        $sql = 'SELECT * FROM products';
+        $sql = "SELECT * FROM products";
+        $result = $pdo->pdo_query($sql);
+        return $result;
+    }
+
+    public function getListhome()
+    {
+        $pdo = new connect();
+        $sql = "SELECT * FROM products limit 8";
         $result = $pdo->pdo_query($sql);
         return $result;
     }
@@ -50,4 +58,20 @@ class product{
         $result = $pdo->pdo_query_one($sql);
         return $result;
     }
+
+//    //chi tiet san pham
+//    public function productsDetail($id) {
+//        $sql="SELECT * FROM products WHERE 1";
+//        if($id>0){ $sql.="AND id=" .$id;}
+//        $conn=connect();
+//        $result = $conn->prepare($sql);
+//        $result ->pdo->execute();
+//        $result->setFetchMode(PDO::FETCH_ASSOC);
+//        return $resultt->fetch(); // Lay ra 1 sp
+//
+//    }
+
+
+
 }
+
