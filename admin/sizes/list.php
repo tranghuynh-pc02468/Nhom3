@@ -21,6 +21,28 @@
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-12">
+                        <?php
+                        if (isset($_SESSION['error'])) {
+                            $message_err = $_SESSION['error'];
+                            unset($_SESSION['error']);
+                        }
+                        if (isset($_SESSION['message'])) {
+                            $message = $_SESSION['message'];
+                            unset($_SESSION['message']);
+                        }
+                        if (isset($message_err))
+                            echo '
+                                    <div class="alert alert-danger" role="alert">
+                                        ' . $message_err . '
+                                    </div>';
+                        if (isset($message))
+                            echo '
+                                    <div class="alert alert-success" role="alert">
+                                        ' . $message . '
+                                    </div>';
+                        ?>
+                    </div>
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Danh Sách Size</h3>

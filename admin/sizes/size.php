@@ -45,7 +45,7 @@ class sizes{
     {
         $pdo = new connect();
         $sql = 'DELETE FROM sizes WHERE id  = ' . $id;
-        $result = $pdo->pdo_query_one($sql);
+        $result = $pdo->pdo_execute($sql);
         return $result;
     }
 }

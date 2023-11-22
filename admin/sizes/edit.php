@@ -20,16 +20,16 @@ if (isset($_POST['edit_size'])) {
     if (empty($name)) {
         $error_name = 'Vui lòng nhập thông tin';
     } elseif (!empty($name)) {
-        $pattern = '/[a-z]/';
-        if (preg_match($pattern, $name)) {
-            $error_name = 'Size phải là số';
+        $pattern = '/^\d{2}$/';
+        if (!preg_match($pattern, $name)) {
+            $error_name = 'Size phải là số dương có 2 chử số';
         }
     } else {
         // lấy tất cả tên trong csdl ra để so sánh
         $db = new sizes();
         $result = $db->getList();
         foreach ($result as $item) {
-            if($name == $item['name']) {
+            if($name === $item['name']) {
                 $error_name = 'Dữ liệu đã tồn tại';
             }
         }
@@ -38,6 +38,7 @@ if (isset($_POST['edit_size'])) {
     if (!isset($error_name)) {
         $db = new sizes();
         $db->getupdate($id, $name);
+        $_SESSION['message'] = "Cập nhật thành công";
         header('location:index.php?page=listsize');
     }
 
