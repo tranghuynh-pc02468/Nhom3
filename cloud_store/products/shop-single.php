@@ -1,17 +1,6 @@
-<?php
-//
-// $id(isset($_GET['id'])&&($_GET['id']>0)){
-//    $pro=productsDetail(id)
-//}
-////
-////    if(!is_array($pro)){
-////       echo 'ko ton tai';
-////    }
-////
-////?>
-
-
 <div class="site-wrap">
+
+
     <div class="bg-light py-3">
         <div class="container">
             <div class="row">
@@ -28,38 +17,37 @@
                     <img src="images/cloth_1.jpg" alt="Image" class="img-fluid">
                 </div>
                 <div class="col-md-6">
-                    <?php
-                        include './admin/product/products.php';
-                            $name=$pro['name'];
-                            $image=$pro['image'];
-                            $price=$pro['price'];
-                            $sizes=$pro['sizes'];
-                            $content=$pro['content'];
-
-                        ?>
-                    <h2 class="text-black"><?='.$name'?></h2>
+                    <h2 class="text-black">Tank Top T-Shirt</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, vitae, explicabo? Incidunt
                         facere, natus soluta dolores iusto! Molestiae expedita veritatis nesciunt doloremque sint
                         asperiores fuga voluptas, distinctio, aperiam, ratione dolore.</p>
                     <p class="mb-4">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis.
                         Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis
                         perspiciatis illum hic magni iste, velit aperiam quis.</p>
-                    <p><strong class="text-primary h4">'.number_format($price).'</strong></p>
+                    <p><strong class="text-primary h4">$50.00</strong></p>
                     <div class="mb-1 d-flex">
                         <label for="option-sm" class="d-flex mr-3 mb-3">
-                            <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-sm" name="shop-sizes"></span>
+                            <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio"
+                                                                                                           id="option-sm"
+                                                                                                           name="shop-sizes"></span>
                             <span class="d-inline-block text-black">Small</span>
                         </label>
                         <label for="option-md" class="d-flex mr-3 mb-3">
-                            <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-md" name="shop-sizes"></span>
+                            <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio"
+                                                                                                           id="option-md"
+                                                                                                           name="shop-sizes"></span>
                             <span class="d-inline-block text-black">Medium</span>
                         </label>
                         <label for="option-lg" class="d-flex mr-3 mb-3">
-                            <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-lg" name="shop-sizes"></span>
+                            <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio"
+                                                                                                           id="option-lg"
+                                                                                                           name="shop-sizes"></span>
                             <span class="d-inline-block text-black">Large</span>
                         </label>
                         <label for="option-xl" class="d-flex mr-3 mb-3">
-                            <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-xl" name="shop-sizes"></span>
+                            <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio"
+                                                                                                           id="option-xl"
+                                                                                                           name="shop-sizes"></span>
                             <span class="d-inline-block text-black"> Extra Large</span>
                         </label>
                     </div>
@@ -158,7 +146,6 @@
             </div>
         </div>
     </div>
-</div>
 
 
     </body>

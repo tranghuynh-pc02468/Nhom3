@@ -53,6 +53,7 @@ ob_start();
                 include './products/shop-single.php';
                 break;
 
+
             case "logout":
                 header("location: index.php");
                 break;

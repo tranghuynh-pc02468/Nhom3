@@ -50,7 +50,6 @@ include "components/sidebar.php";
                                         <?php
                                         $db= new category();
                                         $add= $db->getList();
-                                        $i=1;
                                         foreach ($add as $list){
                                             extract($list);
                                             echo'

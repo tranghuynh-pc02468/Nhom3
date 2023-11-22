@@ -59,17 +59,7 @@ class product{
         return $result;
     }
 
-//    //chi tiet san pham
-//    public function productsDetail($id) {
-//        $sql="SELECT * FROM products WHERE 1";
-//        if($id>0){ $sql.="AND id=" .$id;}
-//        $conn=connect();
-//        $result = $conn->prepare($sql);
-//        $result ->pdo->execute();
-//        $result->setFetchMode(PDO::FETCH_ASSOC);
-//        return $resultt->fetch(); // Lay ra 1 sp
-//
-//    }
+
 
 
 
