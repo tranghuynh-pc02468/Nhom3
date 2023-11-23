@@ -19,7 +19,8 @@ class connect
             $conn = $this->pdo_get_connection();
             $stmt = $conn->prepare($sql);
             $stmt->execute($sql_args);
-            return $stmt;
+            return $conn->lastInsertId();
+//            return $stmt;
         } catch (PDOException $e) {
             throw $e;
         } finally {

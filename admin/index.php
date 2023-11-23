@@ -38,6 +38,7 @@ ob_start();
         include './sizes/size.php';
         include './comment/comment.php';
         include './order/order.php';
+        include './sizes/size_detail.php';
 
         $action = "home";
         if (isset($_GET['page']))
@@ -69,10 +70,10 @@ ob_start();
             case 'addpro':
                 include './product/add.php';
                 break;
-            case 'edit_pro':
+            case 'editpro':
                 include './product/edit.php';
                 break;
-            case 'del_pro':
+            case 'delpro':
                 include './product/del.php';
                 break;
 

@@ -48,4 +48,12 @@ class sizes{
         $result = $pdo->pdo_execute($sql);
         return $result;
     }
+
+//    lấy size lúc sửa sản phẩm
+    function size_editProduct($id){
+        $db = new connect();
+        $sql = "SELECT sizes.id, sizes.name, size_detail.product_id, size_detail.size_id  FROM sizes 
+                JOIN size_detail  ON sizes.id = size_detail.size_id WHERE size_detail.product_id = '$id' ";
+        return $db->pdo_query($sql);
+    }
 }

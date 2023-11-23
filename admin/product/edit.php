@@ -17,17 +17,18 @@ if (isset($_POST['editpro'])) {
     $category_id = $_POST['category_id'] ?? "";
     $name = $_POST['name'] ?? "";
     $price = $_POST['price'] ?? "";
-    $image = save_file('image', $UPLOAD_URL);
+    $image_upload = save_file('image_upload', $UPLOAD_URL);
+    $image = strlen($image_upload) > 0 ? $image_upload : $image;
     $content = $_POST['content'] ?? "";
-    $size_id = $_POST['size_id'] ?? "";
-    $views = 0;
+    $size = $_POST['sizes'] ?? "";
+    $views = $_POST['views'];
 
     // kt loi ten
-    if (isset($name)) {
+    if (empty($name)) {
         $error_name = 'Vui lòng nhập thông tin';
     }
 // lt loi gia
-    if (isset($price)) {
+    if (empty($price)) {
         $error_price = "Vui lòng không bỏ trống giá";
     } else {
         $pattern = '/[a-z]/';
@@ -36,42 +37,41 @@ if (isset($_POST['editpro'])) {
         }
     }
 // kt loi size
-    if (empty($size_id)) {
+    if (empty($size)) {
         $error_size = 'Vui lòng chọn size';
     }
 // kt loi k chon danh muc
-    if (isset($category_id)) {
+    if (empty($category_id)) {
         $error_category = "Vui lòng chọn danh mục";
     }
 // kt loi k nhap content
     if (empty($content)) {
         $error_content = "Không được bỏ trống";
     }
-// kt loi k chon hinh
-    if (empty($image)) {
-        $error_image = "Vui lòng chọn ảnh";
-    }
 
-// kt loi k chon danh muc
-    if (empty($category_id)) {
-        $error_category = "Vui lòng chọn danh mục";
-    }
 
 // var_dump($name, $price, $image, $category_id, $content);
-    if (!isset($error_name) && !isset($error_price) && !isset($error_size) && !isset($error_category) && !isset($error_content) && !isset($error_image)) {
+    if (!isset($error_name) && !isset($error_price) && !isset($error_size) && !isset($error_category) && !isset($error_content)) {
+        // Xóa product_id = id đang sửa ở bảng size_detail
+        $dbSizeDetail = new size_detail();
+        $dbSizeDetail->getDeleteProductId($id);
+
+        // Cập nhật lại sản phẩm
         $db = new product();
-        $result = $db->getupdate($id, $category_id, $name, $price, $image, $content, $views);
-        if ($result) {
-            $mgs = "Thành công";
-            header('location: index.php?page=listpro');
-        } else {
-            $mgs = "Lỗi";
+        $lastInsertId = $db->getupdate($id, $category_id, $name, $price, $image, $content, $views);
+
+        // insert lại theo id sp đang sửa và size đã chọn
+        for ($i = 0; $i < sizeof($size); $i++) {
+            $size_id = $size[$i];
+            $dbSizeDetail->getInsert($id, $size_id);
         }
+
+        $_SESSION['message'] = "Cập nhật thành công";
+        header('location: index.php?page=listpro');
     }
 
 
 }
-
 
 
 ?>
@@ -110,8 +110,11 @@ if (isset($_POST['editpro'])) {
                                                 $db = new category();
                                                 $list = $db->getList();
                                                 foreach ($list as $item) {
-                                                    extract($item);
-                                                    echo '<option value="' . $id . '">' . $name . '</option>';
+                                                    if ($item['id'] == $category_id) {
+                                                        echo '<option selected value="' . $item['id'] . '">' . $item['name'] . '</option>';
+                                                    } else {
+                                                        echo '<option value="' . $item['id'] . '">' . $item['name'] . '</option>';
+                                                    }
                                                 }
                                                 ?>
 
@@ -142,14 +145,30 @@ if (isset($_POST['editpro'])) {
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="price">Size</label>
-                                            <select class="selectpicker form-control border" name="size_id" multiple
+                                            <select class="selectpicker form-control border" name="sizes[]" multiple
                                                     title="Chọn size giày">
                                                 <?php
                                                 $db = new sizes();
                                                 $list = $db->getList();
+                                                $checked = $db->size_editProduct($id);
                                                 foreach ($list as $item) {
-                                                    extract($item);
-                                                    echo '<option value="' . $id . '">' . $name . '</option>';
+                                                    $isCheck = false;
+                                                    foreach ($checked as $check) {
+                                                        if ($item['id'] == $check['size_id']) {
+                                                            $isCheck = true;
+                                                        }
+                                                    }
+                                                    switch ($isCheck) {
+                                                        case false:
+                                                            echo '<option value="' . $item['id'] . '">' . $item['name'] . '</option>';
+                                                            break;
+                                                        case true:
+                                                            echo '<option selected value="' . $item['id'] . '">' . $item['name'] . '</option>';
+                                                            break;
+                                                        default:
+                                                            echo '<option value="' . $item['id'] . '">' . $item['name'] . '</option>';
+                                                            break;
+                                                    }
                                                 }
 
                                                 ?>
@@ -162,29 +181,37 @@ if (isset($_POST['editpro'])) {
                                             ?>
                                         </div>
                                         <div class="form-group col-12">
-                                            <label for="exampleInputFile">Hình Ảnh</label>
-                                            <div class="input-group">
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" name="image">
-                                                    <label class="custom-file-label" for="exampleInputFile">Choose
-                                                        file</label>
-
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label for="exampleInputFile">Hình Ảnh</label>
+                                                    <div class="input-group">
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" name="image_upload">
+                                                            <input type="hidden" value="<?=$image?>" name="image">
+                                                            <label class="custom-file-label" for="exampleInputFile">Choose
+                                                                file</label>
+                                                        </div>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Upload</span>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                                    if (isset($error_image)) {
+                                                        echo '<small class="text-danger">' . $error_image . '</small>';
+                                                    }
+                                                    ?>
                                                 </div>
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">Upload</span>
+                                                <div class="col-lg-6 mt-4">
+                                                    <img src="../upload/<?= $image ?>" alt="" style="width:100px;">
                                                 </div>
-
                                             </div>
-                                            <?php
-                                            if (isset($error_image)) {
-                                                echo '<small class="text-danger">' . $error_image . '</small>';
-                                            }
-                                            ?>
+
+
                                         </div>
-                                        <input type="hidden" name="views" value="0">
+                                        <input type="hidden" name="views" value="<?= $views ?>">
                                         <div class="form-group col-12">
                                             <label for="" class="form-label">Mô tả</label>
-                                            <textarea name="content" class="form-control" rows="10"><?= $content ?></textarea>
+                                            <textarea name="content" id="summernote" class="form-control" rows="10"><?= $content ?></textarea>
                                         </div>
                                         <?php
                                         if (isset($error_content)) {

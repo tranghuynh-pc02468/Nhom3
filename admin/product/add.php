@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $price = $_POST['price'] ?? "";
     $image = save_file('image', $UPLOAD_URL);
     $content = $_POST['content'] ?? "";
-    $size_id = $_POST['size_id'] ?? "";
+    $size = $_POST['sizes'] ?? "";
     $views = 0;
 
     // kt loi ten
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
     }
     // kt loi size
-    if (empty($size_id)) {
+    if (empty($size)) {
         $error_size = 'Vui lòng chọn size';
     }
     // kt loi k chon danh muc
@@ -50,11 +50,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $db = new product();
         $result = $db->getAdd($category_id, $name, $price, $image, $content, $views);
         if ($result) {
-            $mgs = "Thành công";
-            header('location: index.php?page=listpro');
-        } else {
-            $mgs = "Lỗi";
+            for ($i = 0; $i < sizeof($size); $i++) {
+                $size_id = $size[$i];
+                $dbSizeDetail = new size_detail();
+                // Sử dụng $lastInsertId ở đây
+                $dbSizeDetail->getInsert($result, $size_id);
+            }
         }
+        $_SESSION['message'] = "Thêm sản phẩm thành công";
+        header('location: index.php?page=listpro');
     }
 
 
@@ -126,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="price">Size</label>
-                                            <select class="selectpicker form-control border" name="size_id" multiple
+                                            <select class="selectpicker form-control border" name="sizes[]" multiple
                                                     title="Chọn size giày">
                                                 <?php
                                                 $db = new sizes();

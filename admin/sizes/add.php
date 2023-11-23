@@ -11,17 +11,14 @@ if (isset($_POST['addsize']) && ($_POST['addsize'])) {
     // kt loi ten
     if (empty($name)) {
         $error_name = 'Vui lòng nhập thông tin';
-    } elseif(!empty($name)) {
-        $pattern = '/^\d{2}$/';
-        if (!preg_match($pattern, $name)) {
-            $error_name = 'Size phải là số dương có 2 chử số';
-        }
+    } elseif (!preg_match('/^\d{2}$/', $name)) {
+        $error_name = 'Size phải là số dương có 2 chử số';
     } else {
         // lấy tất cả tên trong csdl ra để so sánh
         $db = new sizes();
         $result = $db->getList();
         foreach ($result as $item) {
-            if($name === $item['name']) {
+            if ($name === $item['name']) {
                 $error_name = 'Dữ liệu đã tồn tại';
             }
         }
