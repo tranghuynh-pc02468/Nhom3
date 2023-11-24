@@ -21,122 +21,62 @@ include "components/sidebar.php";
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-12">
+                        <?php
+                        if (isset($_SESSION['error'])) {
+                            $message_err = $_SESSION['error'];
+                            unset($_SESSION['error']);
+                        }
+                        if (isset($_SESSION['message'])) {
+                            $message = $_SESSION['message'];
+                            unset($_SESSION['message']);
+                        }
+                        if (isset($message_err))
+                            echo '
+                                    <div class="alert alert-danger" role="alert">
+                                        ' . $message_err . '
+                                    </div>';
+                        if (isset($message))
+                            echo '
+                                    <div class="alert alert-success" role="alert">
+                                        ' . $message . '
+                                    </div>';
+                        ?>
+                    </div>
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Fixed Header Table</h3>
-
-                                <div class="card-tools">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <div class="input-group-append">
-                                            <!-- <a href="index.php?page=addpro" class="btn btn-primary">
-                                                Thêm Mới
-                                            </a> -->
-                                        </div>
-                                    </div>
-                                </div>
+                                <h3 class="card-title">Danh sách khách hàng</h3>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body table-responsive p-0" style="height: 300px;">
+                            <div class="card-body table-responsive p-0" style="height: 470px;">
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>User</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Reason</th>
-                                        <th>1234567</th>
-                                    </tr>
+                                        <tr class="text-center">
+                                            <th>STT</th>
+                                            <th>Tên</th>
+                                            <th>Địa chỉ Email</th>
+                                            <th>Hình ảnh</th>
+                                            <th></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>183</td>
-                                        <td>John Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-success">Approved</span></td>
-                                        <td>sdfghjkl;ẻtyuio</td>
-                                        <td>
-                                            <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href=""
-                                               class="btn btn-danger">Xóa</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>219</td>
-                                        <td>Alexander Pierce</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-warning">Pending</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                        <td>
-                                            <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href=""
-                                               class="btn btn-danger">Xóa</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>657</td>
-                                        <td>Bob Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-primary">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                        <td>
-                                            <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href=""
-                                               class="btn btn-danger">Xóa</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>175</td>
-                                        <td>Mike Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-danger">Denied</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                        <td>
-                                            <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href=""
-                                               class="btn btn-danger">Xóa</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>134</td>
-                                        <td>Jim Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-success">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                        <td>
-                                            <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href=""
-                                               class="btn btn-danger">Xóa</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>494</td>
-                                        <td>Victoria Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-warning">Pending</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                        <td>
-                                            <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href=""
-                                               class="btn btn-danger">Xóa</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>832</td>
-                                        <td>Michael Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-primary">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                        <td>
-                                            <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href=""
-                                               class="btn btn-danger">Xóa</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>982</td>
-                                        <td>Rocky Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-danger">Denied</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                        <td>
-                                            <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href=""
-                                               class="btn btn-danger">Xóa</a>
-                                        </td>
-                                    </tr>
+                                        <?php
+                                            $db = new users();
+                                            $result = $db -> getList();
+                                            $i=1;
+                                            foreach ($result as $item){
+                                        ?>
+                                        <tr class="text-center">
+                                            <td><?= $i ?></td>
+                                            <td><?= $item['name'] ?></td>
+                                            <td><?= $item['email'] ?></td>
+                                            <td><img src="../upload/<?= $item['image'] ?>" alt="image" style="width: 100px"></td>
+                                            <td>
+                                                <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href="index.php?page=deleteuser&id=<?= $item['id'] ?>"
+                                                   class="btn btn-danger">Xóa</a>
+                                            </td>
+                                        </tr>
+                                        <?php $i++; } ?>
                                     </tbody>
                                 </table>
                             </div>

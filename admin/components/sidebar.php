@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="index.php?page=list-order" class="nav-link">
                         <i class="nav-icon far fa-circle text-info"></i>
                         <p>Đơn Hàng</p>
                     </a>

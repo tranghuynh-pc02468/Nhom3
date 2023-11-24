@@ -7,25 +7,37 @@ include "components/sidebar.php";
 if (isset($_POST['addsize']) && ($_POST['addsize'])) {
     $name = $_POST['name'] ?? "";
 
+
     // kt loi ten
     if (empty($name)) {
         $error_name = 'Vui lòng nhập thông tin';
+    } elseif (!preg_match('/^\d{2}$/', $name)) {
+        $error_name = 'Size phải là số dương có 2 chử số';
+    } else {
+        // lấy tất cả tên trong csdl ra để so sánh
+        $db = new sizes();
+        $result = $db->getList();
+        foreach ($result as $item) {
+            if ($name === $item['name']) {
+                $error_name = 'Dữ liệu đã tồn tại';
+            }
+        }
     }
+
 
     // var_dump($name, $price, $image, $category_id, $content);
     if (!isset($error_name)) {
+
         $db = new sizes();
         $result = $db->getAdd($name);
         if ($result) {
-            $mgs = "Thành công";
+            $_SESSION['message'] = "Thêm thành công";
             header('location: index.php?page=listsize');
         } else {
-            $mgs = "Lỗi";
+           $_SESSION['error'] = "Thêm thất bại";
         }
 
 
-    } else {
-        $mgs = "Không insert được";
     }
 
 }

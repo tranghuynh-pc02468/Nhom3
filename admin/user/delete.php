@@ -1,6 +1,19 @@
 <?php
 $id = $_GET['id'];
-$users = new users();
-$restart = $users->getDeLeTe($id);
-header('location: index.php?act=listcomment')
+$db = new users();
+$result = $db->getById($id);
+try {
+    if ($result['role'] == 1) {
+        $_SESSION['error'] = "Không thể xóa tài khoản admin";
+    } else {
+        $db->getDeLeTe($id);
+        $_SESSION['message'] = "Xóa tài khoản thành công";
+    }
+} catch (Exception $e) {
+    $_SESSION['error'] = "Không thể xóa tài khoản";
+}
+
+
+header('location: index.php?page=listuser');
+exit;
 ?>

@@ -14,10 +14,26 @@ if(isset($_POST['capnhat']) && ($_POST['capnhat'])){
     //lay dl tu form
     $name = $_POST['name'] ?? "";
 
-    $list = $db->getById($id);
-    $db = new category();
-    $db->getupdate($id, $name);
-    header('location:index.php?page=listcategory');
+    // kt loi
+    if (empty($name)) {
+        $error_name = "Vui lòng không bỏ trống";
+    } else {
+        $db = new category();
+        $result = $db->getList();
+        foreach ($result as $item) {
+            if ($name === $item['name']) {
+                $error_name = "Tên đã tồn tại";
+            }
+        }
+    }
+
+    if(!isset($error_name)){
+        $db = new category();
+        $db->getupdate($id, $name);
+        $_SESSION['message'] = "Cập nhật thành công";
+        header('location:index.php?page=listcategory');
+    }
+
 }
 
 ?>
@@ -28,7 +44,7 @@ if(isset($_POST['capnhat']) && ($_POST['capnhat'])){
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0"> Cập Nhật Loại Hàng Hóa</h1>
+                        <h1 class="m-0">Loại hàng hóa</h1>
                     </div>
 
                 </div>
@@ -40,7 +56,7 @@ if(isset($_POST['capnhat']) && ($_POST['capnhat'])){
                 <div class="row">
                     <div class="col-md-12">
                         <!-- general form elements -->
-                        <div class="card card-primary">
+                        <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Cập nhập loại hàng</h3>
                             </div>
@@ -57,6 +73,7 @@ if(isset($_POST['capnhat']) && ($_POST['capnhat'])){
                                         <label>Tên danh mục</label>
                                         <input type="text" class="form-control" name="name"
                                                value="<?= $list['name'] ?>">
+                                        <small class="text-danger"><?= $error_name ?? '' ?></small>
                                     </div>
 
 

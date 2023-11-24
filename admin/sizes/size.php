@@ -2,15 +2,17 @@
 class sizes{
     var $id = null;
     var $name = null;
-    
+
     //Hiển thị bảng
     public function getList()
     {
         $pdo = new connect();
-        $sql = 'SELECT * FROM sizes';
+        $sql = "SELECT * FROM sizes
+                ORDER BY id DESC";
         $result = $pdo->pdo_query($sql);
         return $result;
     }
+
 
     //Hiển thị mã
     public function getById($id)
@@ -43,7 +45,15 @@ class sizes{
     {
         $pdo = new connect();
         $sql = 'DELETE FROM sizes WHERE id  = ' . $id;
-        $result = $pdo->pdo_query_one($sql);
+        $result = $pdo->pdo_execute($sql);
         return $result;
+    }
+
+//    lấy size lúc sửa sản phẩm
+    function size_editProduct($id){
+        $db = new connect();
+        $sql = "SELECT sizes.id, sizes.name, size_detail.product_id, size_detail.size_id  FROM sizes 
+                JOIN size_detail  ON sizes.id = size_detail.size_id WHERE size_detail.product_id = '$id' ";
+        return $db->pdo_query($sql);
     }
 }

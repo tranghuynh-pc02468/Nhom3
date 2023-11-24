@@ -11,7 +11,6 @@ include "components/sidebar.php";
                         <div class="col-sm-6">
                             <h1 class="m-0">Loại hàng hóa</h1>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -20,6 +19,28 @@ include "components/sidebar.php";
                     <!-- viết code giao diện ở đây -->
                     <!-- /.row -->
                     <div class="row">
+                        <div class="col-12">
+                            <?php
+                            if (isset($_SESSION['error'])) {
+                                $message_err = $_SESSION['error'];
+                                unset($_SESSION['error']);
+                            }
+                            if (isset($_SESSION['message'])) {
+                                $message = $_SESSION['message'];
+                                unset($_SESSION['message']);
+                            }
+                            if (isset($message_err))
+                                echo '
+                                    <div class="alert alert-danger" role="alert">
+                                        ' . $message_err . '
+                                    </div>';
+                            if (isset($message))
+                                echo '
+                                    <div class="alert alert-success" role="alert">
+                                        ' . $message . '
+                                    </div>';
+                            ?>
+                        </div>
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
@@ -41,24 +62,24 @@ include "components/sidebar.php";
                                         <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Name</th>
+                                            <th>Tên danh mục</th>
                                             <th></th>
 
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $db= new category();
-                                        $add= $db->getList();
-                                        foreach ($add as $list){
+                                        $db = new category();
+                                        $add = $db->getList();
+                                        foreach ($add as $list) {
                                             extract($list);
-                                            echo'
+                                            echo '
                                                     <tr>
-                                                    <td>'.$id.'</td>
-                                                    <td>'.$name.'</td>
+                                                    <td>' . $id . '</td>
+                                                    <td>' . $name . '</td>
                                                     <td>
-                                                    <a href="index.php?page=editcategory&id='.$id.'" class="btn btn-primary">Sửa</a>
-                                                    <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href="index.php?page=delcategory&id=' .$id. '" type="button" class="btn btn-danger">Xóa</a>
+                                                    <a href="index.php?page=editcategory&id=' . $id . '" class="btn btn-primary">Sửa</a>
+                                                    <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href="index.php?page=delcategory&id=' . $id . '" type="button" class="btn btn-danger">Xóa</a>
                                                     </td>
                                                     
                                                     
