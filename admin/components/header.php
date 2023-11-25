@@ -9,7 +9,7 @@
             <a href="#" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Đăng xuất</a>
+            <a href="index.php?page=logout" class="nav-link">Đăng xuất</a>
         </li>
     </ul>
 
