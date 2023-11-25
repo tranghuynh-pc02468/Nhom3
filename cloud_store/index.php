@@ -32,6 +32,8 @@ ob_start();
         <?php
         include '../admin/components/pdo.php';
         include './include/header.php';
+        include '../admin/product/products.php';
+        include '../config.php';
 
         $action = "home";
         if (isset($_GET['page']))
