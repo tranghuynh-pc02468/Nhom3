@@ -59,13 +59,13 @@ include "./components/sidebar.php";
                                                 echo $text = '
                                                 <tbody>
                                             <tr>
-                                                <th>' . $i . '</th>
-                                                <th>' . $row['content'] . '</th>
-                                                <th>' . $row['date'] . '</th>
-                                                <th>' . $row['name_user'] . '</th>
-                                                <th>
+                                                <td>' . $i . '</td>
+                                                <td>' . $row['content'] . '</td>
+                                                <td>' . date('d-m-Y', strtotime($row['date'])) . '</td>
+                                                <td>' . $row['name_user'] . '</td>
+                                                <td>
                                                 <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href="index.php?page=delcomment&id=' . $row['id'] . '" type="button" class="btn btn-danger">Xóa</a>
-                                                </th>
+                                                </td>
                                             </tr>
                     
                                         </tbody>';
