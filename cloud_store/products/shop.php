@@ -4,7 +4,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mb-0"><a href="index.php?page=home">Trang chủ</a> <span class="mx-2 mb-0">/</span>
-                    <strong class="text-black">Cửa hàng</strong></div>
+                    <strong class="text-black">Cửa hàng</strong>
+                </div>
             </div>
         </div>
     </div>
@@ -17,7 +18,9 @@
 
                     <div class="row">
                         <div class="col-md-12 mb-5">
-                            <div class="float-md-left mb-4"><h2 class="text-black h5">Sản phẩm</h2></div>
+                            <div class="float-md-left mb-4">
+                                <h2 class="text-black h5">Sản phẩm</h2>
+                            </div>
                             <div class="d-flex">
                                 <div class="dropdown mr-1 ml-md-auto">
                                     <button type="button" class="btn btn-secondary btn-sm dropdown-toggle"
@@ -65,7 +68,7 @@
                                                 <div class="block-4-text p-4">
                                                 <h3><a href="index.php?page=shop-single&id=' . $id . '">' . $name . '</a></h3>
                                                 
-                                                <p class="text-primary font-weight-bold">' . number_format($price) . ' đ</p>
+                                                <p class="text-primary font-weight-bold">' . number_format($price) . 'đ</p>
                                                 </div>
                                                 
                                         </div>
@@ -112,19 +115,22 @@
                             <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
                             <div id="slider-range" class="border-primary"></div>
                             <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white"
-                                   disabled=""/>
+                                   disabled="" />
                         </div>
 
                         <div class="mb-4">
                             <h3 class="mb-3 h6 text-uppercase text-black d-block">Size</h3>
                             <label for="s_sm" class="d-flex">
-                                <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Small (2,319)</span>
+                                <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Small
+                                    (2,319)</span>
                             </label>
                             <label for="s_md" class="d-flex">
-                                <input type="checkbox" id="s_md" class="mr-2 mt-1"> <span class="text-black">Medium (1,282)</span>
+                                <input type="checkbox" id="s_md" class="mr-2 mt-1"> <span class="text-black">Medium
+                                    (1,282)</span>
                             </label>
                             <label for="s_lg" class="d-flex">
-                                <input type="checkbox" id="s_lg" class="mr-2 mt-1"> <span class="text-black">Large (1,392)</span>
+                                <input type="checkbox" id="s_lg" class="mr-2 mt-1"> <span class="text-black">Large
+                                    (1,392)</span>
                             </label>
                         </div>
 
@@ -205,4 +211,5 @@
 </div>
 
     </body>
+
     </html>
