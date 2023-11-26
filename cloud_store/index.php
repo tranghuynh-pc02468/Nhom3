@@ -31,7 +31,16 @@ ob_start();
     <div class="site-wrap">
         <?php
         include '../admin/components/pdo.php';
+        include '../config.php';
         include './include/header.php';
+        include '../admin/include/data.php';
+        include '../admin/user/users.php';
+        include '../admin/category/category.php';
+        include '../admin/product/products.php';
+        include '../admin/sizes/size.php';
+        include './accounts/account.php';
+
+
 
         $action = "home";
         if (isset($_GET['page']))
@@ -46,7 +55,12 @@ ob_start();
             case 'contact':
                 include './contact.php';
                 break;
+            case 'cart':
+                include './cart.php';
+                break;
             case 'shop':
+                $db = new product();
+                $restart = $db->getList();
                 include './products/shop.php';
                 break;
             case 'shop-single':
@@ -54,7 +68,40 @@ ob_start();
                 break;
 
 
+            case 'keyword':
+                $keyword = $_POST['search'];
+                $db = new product();
+                $restart = $db->keyword($keyword);
+                include './products/shop.php';
+                break;
+
+
+            // case 'cmt':
+            //     include './comments/comment.php';
+            //     break;
+            // case 'delcmt':
+            //     include './comments/delete.php';
+            //     break;
+            case 'editcmt':
+                include './comments/edit.php';
+                break;
+            case 'addcmt':
+                include './comments/add.php';
+                break;
+
+
+            case 'login':
+                include './accounts/login.php';
+                break;
+            case 'register':
+                include './accounts/register.php';
+                break;
+
+            case 'user':
+                include '../admin/user/users.php';
+                break;
             case "logout":
+                unset($_SESSION['id']);
                 header("location: index.php");
                 break;
         }
@@ -73,8 +120,9 @@ ob_start();
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/aos.js"></script>
-
     <script src="js/main.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     </body>
 
