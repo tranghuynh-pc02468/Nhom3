@@ -55,15 +55,14 @@ ob_start();
             case 'contact':
                 include './contact.php';
                 break;
-            case 'cart':
-                include './cart.php';
-                break;
             case 'shop':
                 include './products/shop.php';
                 break;
             case 'shop-single':
                 include './products/shop-single.php';
                 break;
+            case 'search':
+                include './products/shop-list.php';
 
 
             case 'editcmt':

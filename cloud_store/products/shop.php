@@ -28,6 +28,7 @@
                                             aria-expanded="false">
                                         Latest
                                     </button>
+
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                                         <a class="dropdown-item" href="#">Men</a>
                                         <a class="dropdown-item" href="#">Women</a>
@@ -101,13 +102,17 @@
                     <div class="border p-4 rounded mb-4">
                         <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
                         <ul class="list-unstyled mb-0">
-                            <li class="mb-1"><a href="#" class="d-flex"><span>Men</span> <span
-                                            class="text-black ml-auto">(2,220)</span></a></li>
-                            <li class="mb-1"><a href="#" class="d-flex"><span>Women</span> <span
-                                            class="text-black ml-auto">(2,550)</span></a></li>
-                            <li class="mb-1"><a href="#" class="d-flex"><span>Children</span> <span
-                                            class="text-black ml-auto">(2,124)</span></a></li>
-                        </ul>
+                            <?php
+                            $db= new category();
+                            $result = $db->getList();
+                            foreach ($result as $item) {
+                            ?>    
+                            <li class="mb-1"><a href="index.php?page=category&id=<?=$item['id']?>"
+                            class="d-flex text-uppercase"><span><?=$item['name']?></span></a>
+                             </li>
+                            <?php } ?>
+                            
+                          </ul>                 
                     </div>
 
                     <div class="border p-4 rounded mb-4">
@@ -209,6 +214,7 @@
         </div>
     </div>
 </div>
+
 
     </body>
 

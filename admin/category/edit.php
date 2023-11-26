@@ -3,14 +3,14 @@ include "components/header.php";
 include "components/sidebar.php";
 ?>
 <?php
-$id = $_GET['id'] ?? '';
-if (!empty('$id')) {
-    $db = new category();
-    $list = $db->getById($id);
+$id=$_GET['id']??'';
+if(!empty('$id')){
+    $db= new category();
+    $list = $db->getById( $id);
 
 }
 
-if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+if(isset($_POST['capnhat']) && ($_POST['capnhat'])){
     //lay dl tu form
     $name = $_POST['name'] ?? "";
 
