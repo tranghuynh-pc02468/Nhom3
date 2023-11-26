@@ -58,14 +58,14 @@ include "./components/sidebar.php";
                                         echo $text = '
                                             <tbody>
                                         <tr>
-                                            <th>' . $i . '</th>
-                                            <th>' . $row['name_product'] . '</th>
-                                            <th>' . $row['quantity'] . '</th>
-                                            <th>' . $row['max_date'] . '</th>
-                                            <th>' . $row['min_date'] . '</th>
-                                            <th>
+                                            <td>' . $i . '</td>
+                                            <td>' . $row['name_product'] . '</td>
+                                            <td>' . $row['quantity'] . '</td>
+                                            <td>' . date('d-m-Y', strtotime($row['max_date'])) . '</td>
+                                            <td>' . date('d-m-Y', strtotime($row['min_date'])) . '</td>
+                                            <td>
                                             <a href="index.php?page=cmt_detail&id=' . $row['product_id'] . '" type="button" class="btn btn-info">Chi tiết</a>
-                                            </th>
+                                            </td>
                                         </tr>
                 
                                     </tbody>';
@@ -73,88 +73,6 @@ include "./components/sidebar.php";
                                     }
 
                                     ?>
-                                    <!-- <tbody>
-                                        <tr>
-                                            <td>183</td>
-                                            <td>John Doe</td>
-                                            <td>11-7-2014</td>
-                                            <td><span class="tag tag-success">Approved</span></td>
-                                            <td>sdfghjkl;ẻtyuio</td>
-                                            <td>
-                                                <a href="" class="btn btn-danger">Xóa</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>219</td>
-                                            <td>Alexander Pierce</td>
-                                            <td>11-7-2014</td>
-                                            <td><span class="tag tag-warning">Pending</span></td>
-                                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                            <td>
-                                                <a href="" class="btn btn-danger">Xóa</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>657</td>
-                                            <td>Bob Doe</td>
-                                            <td>11-7-2014</td>
-                                            <td><span class="tag tag-primary">Approved</span></td>
-                                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                            <td>
-                                                <a href="" class="btn btn-danger">Xóa</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>175</td>
-                                            <td>Mike Doe</td>
-                                            <td>11-7-2014</td>
-                                            <td><span class="tag tag-danger">Denied</span></td>
-                                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                            <td>
-                                                <a href="" class="btn btn-danger">Xóa</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>134</td>
-                                            <td>Jim Doe</td>
-                                            <td>11-7-2014</td>
-                                            <td><span class="tag tag-success">Approved</span></td>
-                                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                            <td>
-                                                <a href="" class="btn btn-danger">Xóa</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>494</td>
-                                            <td>Victoria Doe</td>
-                                            <td>11-7-2014</td>
-                                            <td><span class="tag tag-warning">Pending</span></td>
-                                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                            <td>
-                                                <a href="" class="btn btn-danger">Xóa</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>832</td>
-                                            <td>Michael Doe</td>
-                                            <td>11-7-2014</td>
-                                            <td><span class="tag tag-primary">Approved</span></td>
-                                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                            <td>
-                                                <a href="" class="btn btn-danger">Xóa</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>982</td>
-                                            <td>Rocky Doe</td>
-                                            <td>11-7-2014</td>
-                                            <td><span class="tag tag-danger">Denied</span></td>
-                                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                            <td>
-                                                <a href="" class="btn btn-danger">Xóa</a>
-                                            </td>
-                                        </tr>
-                                    </tbody> -->
                                 </table>
                             </div>
                             <!-- /.card-body -->

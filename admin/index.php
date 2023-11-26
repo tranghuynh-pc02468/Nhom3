@@ -39,6 +39,8 @@ ob_start();
         include './comment/comment.php';
         include './order/order.php';
         include './sizes/size_detail.php';
+        include './statistical/statistical.php';
+
 
         $action = "home";
         if (isset($_GET['page']))
@@ -98,6 +100,9 @@ ob_start();
                 include './order/detail.php';
                 break;
 
+            case 'cmt_detail':
+                include './comment/cmt_detail.php';
+                break;
             case 'listcomment':
                 include './comment/list.php';
                 break;
@@ -119,7 +124,9 @@ ob_start();
             case "users":
                 include './user/users.php';
                 break;
+
             case "logout":
+                unset($_SESSION['admin']);
                 header("location: index.php");
                 break;
         }
