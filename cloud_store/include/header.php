@@ -4,26 +4,54 @@
             <div class="row align-items-center">
 
                 <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-                    <form action="" class="site-block-top-search">
+                    <form method="post" action="index.php?page=keyword" class="site-block-top-search">
                         <span class="icon icon-search2"></span>
-                        <input type="text" class="form-control border-0" placeholder="Search">
+                        <input type="text" name="search" class="form-control border-0" placeholder="Search">
                     </form>
                 </div>
 
                 <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
                     <div class="site-logo">
-                        <a href="index.php?page=home" class="js-logo-clone">CLOUD_Store</a>
+                        <a href="index.php?page=home" class="js-logo-clone">Cloud_Store</a>
                     </div>
                 </div>
 
                 <div class="col-6 col-md-4 order-3 order-md-3 text-right">
                     <div class="site-top-icons">
                         <ul>
-                            <li><a href="#"><span class="icon icon-person"></span></a></li>
+                            <!-- <li><a href="#"><span class="icon icon-person"></span></a></li> -->
+                            <?php
+                            $id = $_SESSION['id'] ?? "";
+                            if (isset($_SESSION['id'])) {
+                                if ($id) {
+                                    // $data = new accounts();
+                                    // $restart = $data->getById($id);
+                                    echo '
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      ' . $_SESSION['name'] . '
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="index.php?page=logout">Đăng xuất</a>
+                    </div>
+                  </div>
+                  
+                  ';
+                                }
+                            } else {
+                                echo '<a href="index.php?page=login" data-bs-toggle="modal" aria-labelledby="loginModalLabel" class="user_link">
+                      <span class="icon icon-person"></span></a>';
+                            }
+
+
+                            ?>
+
+
+
 
                             <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
                             <li>
-                                <a href="" class="site-cart">
+                                <a href="#" class="site-cart">
                                     <span class="icon icon-shopping_cart"></span>
                                     <span class="count">2</span>
                                 </a>
@@ -41,10 +69,10 @@
     <nav class="site-navigation text-right text-md-center" role="navigation">
         <div class="container">
             <ul class="site-menu js-clone-nav d-none d-md-block">
-                <li class="">
+                <li>
                     <a href="index.php?page=home">Trang chủ</a>
                 </li>
-                <li class="">
+                <li>
                     <a href="index.php?page=about">Giới thiệu</a>
                 </li>
                 <li><a href="index.php?page=shop">Cửa hàng</a></li>

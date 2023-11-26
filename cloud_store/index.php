@@ -31,9 +31,16 @@ ob_start();
     <div class="site-wrap">
         <?php
         include '../admin/components/pdo.php';
-        include './include/header.php';
-        include '../admin/product/products.php';
         include '../config.php';
+        include './include/header.php';
+        include '../admin/include/data.php';
+        include '../admin/user/users.php';
+        include '../admin/category/category.php';
+        include '../admin/product/products.php';
+        include '../admin/sizes/size.php';
+        include './accounts/account.php';
+
+
 
         $action = "home";
         if (isset($_GET['page']))
@@ -48,6 +55,9 @@ ob_start();
             case 'contact':
                 include './contact.php';
                 break;
+            case 'cart':
+                include './cart.php';
+                break;
             case 'shop':
                 include './products/shop.php';
                 break;
@@ -56,7 +66,26 @@ ob_start();
                 break;
 
 
+            case 'editcmt':
+                include './comments/edit.php';
+                break;
+            case 'addcmt':
+                include './comments/add.php';
+                break;
+
+
+            case 'login':
+                include './accounts/login.php';
+                break;
+            case 'register':
+                include './accounts/register.php';
+                break;
+
+            case 'user':
+                include '../admin/user/users.php';
+                break;
             case "logout":
+                unset($_SESSION['id']);
                 header("location: index.php");
                 break;
         }

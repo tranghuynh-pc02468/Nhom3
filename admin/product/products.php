@@ -11,7 +11,17 @@ class product{
     public function getList()
     {
         $pdo = new connect();
-        $sql = "SELECT * FROM products";
+        $sql = 'SELECT * FROM products ';
+        $result = $pdo->pdo_query($sql);
+        return $result;
+    }
+
+
+    // sp cùng loại
+    public function getListDM($id, $category_id)
+    {
+        $pdo = new connect();
+        $sql = "SELECT * FROM products WHERE category_id = '$category_id' AND id <> '$id'";
         $result = $pdo->pdo_query($sql);
         return $result;
     }
@@ -19,16 +29,7 @@ class product{
     public function getListhome()
     {
         $pdo = new connect();
-        $sql = "SELECT * FROM products limit 8";
-        $result = $pdo->pdo_query($sql);
-        return $result;
-    }
-
-    public function getListshop()
-    {
-        $pdo = new connect();
-        $sql = "SELECT * FROM products 
-                ORDER BY id DESC limit 9";
+        $sql = 'SELECT * FROM products limit 6';
         $result = $pdo->pdo_query($sql);
         return $result;
     }
@@ -37,7 +38,7 @@ class product{
     public function getById($id)
     {
         $pdo = new connect();
-        $sql = 'SELECT *, products.name as name_product FROM products WHERE id  = ' . $id;
+        $sql = 'SELECT *  FROM products WHERE id  = ' . $id;
         $result = $pdo->pdo_query_one($sql);
         return $result;
     }
@@ -45,7 +46,7 @@ class product{
     public function getupdate($id, $category_id, $name, $price, $image, $content, $views)
     {
         $pdo = new connect();
-        $sql = "UPDATE products SET id = '$id', category_id = '$category_id' ,name = '$name', price = '$price', image = '$image', content = '$content', views='$views', WHERE id = " . $id;
+        $sql = "UPDATE products SET category_id = '$category_id' ,name = '$name', price = '$price', image = '$image', content = '$content', views='$views' WHERE id = " . $id;
         $result = $pdo->pdo_execute($sql);
         return $result;
     }
@@ -67,10 +68,5 @@ class product{
         $result = $pdo->pdo_query_one($sql);
         return $result;
     }
-
-
-
-
-
 }
 
