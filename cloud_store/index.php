@@ -34,7 +34,7 @@ ob_start();
         include './include/header.php';
         include '../admin/product/products.php';
         include '../config.php';
-
+        include '../admin/category/category.php';
         $action = "home";
         if (isset($_GET['page']))
             $action = $_GET['page'];
@@ -54,6 +54,8 @@ ob_start();
             case 'shop-single':
                 include './products/shop-single.php';
                 break;
+            case 'search':
+                include './products/shop-list.php';
 
 
             case "logout":
