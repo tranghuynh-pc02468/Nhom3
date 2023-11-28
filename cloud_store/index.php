@@ -39,6 +39,7 @@ ob_start();
         include '../admin/product/products.php';
         include '../admin/sizes/size.php';
         include './accounts/account.php';
+        include '../admin/comment/comment.php';
 
 
 
