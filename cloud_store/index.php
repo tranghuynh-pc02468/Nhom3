@@ -31,16 +31,10 @@ ob_start();
     <div class="site-wrap">
         <?php
         include '../admin/components/pdo.php';
-        include '../config.php';
         include './include/header.php';
-        include '../admin/include/data.php';
-        include '../admin/user/users.php';
-        include '../admin/category/category.php';
         include '../admin/product/products.php';
-        include '../admin/sizes/size.php';
-        include './accounts/account.php';
-
-
+        include '../admin/category/category.php';
+        include '../config.php';
 
         $action = "home";
         if (isset($_GET['page']))
@@ -56,35 +50,22 @@ ob_start();
                 include './contact.php';
                 break;
             case 'shop':
+                $db = new product();
+                $add = $db->getListshop();
+                include './products/shop.php';
+                break;
+            case 'category':
+                $id = $_GET["iddm"];
+                $db = new product();
+                $add = $db->getListCategory($id);
                 include './products/shop.php';
                 break;
             case 'shop-single':
                 include './products/shop-single.php';
                 break;
-            case 'search':
-                include './products/shop-list.php';
 
 
-            case 'editcmt':
-                include './comments/edit.php';
-                break;
-            case 'addcmt':
-                include './comments/add.php';
-                break;
-
-
-            case 'login':
-                include './accounts/login.php';
-                break;
-            case 'register':
-                include './accounts/register.php';
-                break;
-
-            case 'user':
-                include '../admin/user/users.php';
-                break;
             case "logout":
-                unset($_SESSION['id']);
                 header("location: index.php");
                 break;
         }
