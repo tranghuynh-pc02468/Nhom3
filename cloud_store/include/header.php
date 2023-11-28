@@ -21,8 +21,8 @@
                         <ul>
                             <!-- <li><a href="#"><span class="icon icon-person"></span></a></li> -->
                             <?php
-                            $id = $_SESSION['id'] ?? "";
-                            $name = $_SESSION['name'] ?? "";
+                            $id = $_SESSION['user_id'] ?? "";
+                            $name = $_SESSION['user_name'] ?? "";
 
                             if (isset($name) && $id) {
                                 // User is logged in, show the user's name in a dropdown
@@ -43,14 +43,9 @@
                             }
                             ?>
 
-
-
-
-                            <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
                             <li>
-                                <a href="#" class="site-cart">
+                                <a href="index.php?page=view-cart" class="site-cart">
                                     <span class="icon icon-shopping_cart"></span>
-                                    <span class="count">2</span>
                                 </a>
                             </li>
                             <li class="d-inline-block d-md-none ml-md-0"><a href="#"
