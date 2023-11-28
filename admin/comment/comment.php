@@ -35,6 +35,44 @@ class comments
 
     }
 
+
+    public function insert_binhluan($user_id, $product_id, $date, $content)
+    {
+        try {
+            $db = new connect();
+            $query = "INSERT INTO comments (user_id, product_id, date, content) VALUES (?, ?, ?, ?)";
+            $db->pdo_execute($query, $user_id, $product_id, $date, $content);
+
+            // Debugging: Output the SQL query and bind parameters
+            // var_dump($query); // Output the SQL query
+            var_dump([$user_id, $product_id, $date, $content]); // Output the bind parameters
+
+
+            return true;
+        } catch (PDOException $exception) {
+            // Debugging: Output the exception message
+            var_dump($exception->getMessage());
+            die();
+        }
+    }
+
+
+    function loadall_binhluan($product_id)
+    {
+        $db = new connect();
+        $sql = "SELECT comments.*, users.name AS username 
+                FROM comments
+                LEFT JOIN users ON comments.user_id = users.id
+                WHERE 1";
+        if ($product_id > 0) {
+            $sql .= " AND product_id='" . $product_id . "'";
+        }
+        $sql .= " ORDER BY id DESC";
+        $listbl = $db->pdo_query($sql);
+        return $listbl;
+    }
+
+
     // public function checkUser($user_id)
     // {
     //     $db = new connect();
