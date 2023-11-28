@@ -10,7 +10,7 @@ class order{
 
     function getAll(){
         $db = new connect();
-        $sql = " SELECT orders.id , orders.date, orders.total, users.name as name_user FROM orders
+        $sql = " SELECT orders.id , orders.date, orders.total, users.name as name_user, orders.* FROM orders
                 JOIN users ON orders.user_id = users.id ";
         return $db ->pdo_query($sql);
     }

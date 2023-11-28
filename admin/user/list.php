@@ -51,7 +51,7 @@ include "components/sidebar.php";
                             <div class="card-body table-responsive p-0" style="height: 470px;">
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
-                                        <tr class="text-center">
+                                        <tr>
                                             <th>STT</th>
                                             <th>Tên</th>
                                             <th>Địa chỉ Email</th>
@@ -66,7 +66,7 @@ include "components/sidebar.php";
                                             $i=1;
                                             foreach ($result as $item){
                                         ?>
-                                        <tr class="text-center">
+                                        <tr >
                                             <td><?= $i ?></td>
                                             <td><?= $item['name'] ?></td>
                                             <td><?= $item['email'] ?></td>
