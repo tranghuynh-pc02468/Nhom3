@@ -77,4 +77,10 @@ class product{
         $result = $pdo->pdo_query_one($sql);
         return $result;
     }
+
+
+
+
+
 }
+
