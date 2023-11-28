@@ -85,6 +85,50 @@
     </div>
 
 
+    <div class="row mb">
+        <?php
+        // is_null và is_array kiểm tra coi nó có phải là mảng hay ko và có pahir là 1 mảng ko
+        if (isset($onesp) && is_array($onesp)) {
+            extract($onesp);
+            ?>
+            <div class="boxtitle"><?= $name ?></div>
+            <div class="row boxcontent">
+                <?php
+                $img = $img_path . $img;
+                $formatted_price = number_format($price, 0, '.', '.') . ' VNĐ';
+                echo $formatted_price;
+                echo '<img class="small-image" src="' . $img . '"><br>';
+                echo $mota;
+                ?>
+            </div>
+        <?php } ?>
+
+    </div>
+
+    <div class="m-lg-5 row mb" id="comment">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#comment").load("/cloud_store/comments/comment.php", {
+                    product_id: <?= $id ?>
+                });
+            });
+        </script>
+
+        <div class="boxtitle m-lg-5">Bình luận</div>
+        <!-- <iframe src="<?= $id ?>" width="100%" height="300px" frameborder="0"> -->
+        <!-- <label for="text" class="form-label">Bình luận</label>
+          <input type="text" class="form-control" aria-describedby="emailHelp"> -->
+        <!-- </iframe> -->
+
+
+        <div class="row boxcontent">
+        </div>
+
+    </div>
+
+
+
     <div class="site-section block-3 site-blocks-2 bg-light">
         <div class="container">
             <div class="row justify-content-center">

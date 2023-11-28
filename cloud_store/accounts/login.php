@@ -19,10 +19,6 @@
                         <label for="password" class="form-label">Mật khẩu</label>
                         <input type="password" class="form-control" name="password">
                     </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="loginCheck1">
-                        <label class="form-check-label" for="loginCheck1">Check me out</label>
-                    </div>
                     <div class="modal-footer">
                         <a href="index.php?page=register" type="button" class="btn btn-secondary" data-dismiss="modal">Đăng
                             ký</a>

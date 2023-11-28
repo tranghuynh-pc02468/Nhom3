@@ -7,6 +7,15 @@ class product{
     var $image = null;
     var $content = null;
     var $views = null;
+
+    public function keyword($keyword)
+    {
+        $pdo = new connect();
+        $sql = "SELECT * FROM products WHERE name LIKE '%$keyword%'";
+        $result = $pdo->pdo_query($sql);
+        return $result;
+    }
+
     //Hiển thị bảng
     public function getList()
     {
@@ -16,13 +25,7 @@ class product{
         return $result;
     }
 
-    public function getListhome()
-    {
-        $pdo = new connect();
-        $sql = "SELECT * FROM products limit 8";
-        $result = $pdo->pdo_query($sql);
-        return $result;
-    }
+
 
     public function getListshop()
     {
@@ -78,10 +81,4 @@ class product{
         $result = $pdo->pdo_query_one($sql);
         return $result;
     }
-
-
-
-
-
 }
-
