@@ -34,6 +34,8 @@ ob_start();
         include './include/header.php';
         include '../admin/product/products.php';
         include '../admin/category/category.php';
+        include '../admin/user/users.php';
+        include '../cloud_store/accounts/account.php';
         include '../config.php';
 
         $action = "home";
@@ -64,7 +66,12 @@ ob_start();
                 include './products/shop-single.php';
                 break;
 
-
+            case 'login':
+                include './accounts/login.php';
+                break;
+            case 'register':
+                include './accounts/register.php';
+                break;
             case "logout":
                 header("location: index.php");
                 break;
