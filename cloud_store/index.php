@@ -40,6 +40,7 @@ ob_start();
         include '../admin/sizes/size.php';
         include './accounts/account.php';
         include '../admin/comment/comment.php';
+        include '../admin/order/order.php';
 
 
 
@@ -84,6 +85,12 @@ ob_start();
                     unset($_SESSION['my-cart']);
                 }
                 include './order/cart.php';
+                break;
+            case 'checkout':
+                include './order/check-out.php';
+                break;
+            case 'thanks':
+                include './order/thanks.php';
                 break;
 
             case 'login':
