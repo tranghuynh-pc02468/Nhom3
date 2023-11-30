@@ -84,6 +84,14 @@ class accounts
         return $result;
     }
 
+    public function getDK($name, $email, $password)
+    {
+        $pdo = new connect();
+        $sql = "INSERT INTO users (`name`, `email`, `password`) VALUES ('$name', '$email', '$password')";
+        $result = $pdo->pdo_execute($sql);
+        return $result;
+    }
+
     //Xóa
     public function getDeLeTe($id)
     {
