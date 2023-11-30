@@ -71,6 +71,20 @@ ob_start();
                 include './products/shop-single.php';
                 break;
 
+            case 'add-to-cart':
+                include './order/add-to-cart.php';
+                break;
+            case 'view-cart':
+                include './order/cart.php';
+                break;
+            case 'delete-cart':
+                if(isset($_GET['id'])){
+                    array_splice($_SESSION['my-cart'], $_GET['id'], 1);
+                }else{
+                    unset($_SESSION['my-cart']);
+                }
+                include './order/cart.php';
+                break;
 
             case 'login':
                 include './accounts/login.php';
@@ -95,7 +109,7 @@ ob_start();
 
     </div>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
+   <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
