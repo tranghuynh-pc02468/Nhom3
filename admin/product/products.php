@@ -81,4 +81,17 @@ class product{
         $result = $pdo->pdo_query_one($sql);
         return $result;
     }
+
+//    SP liên quan
+    public function getListDM($id, $category_id){
+        $db = new connect();
+        $sql = "SELECT * FROM products WHERE category_id='$category_id' AND id <> '$id' ";
+        return $db -> pdo_query($sql);
+    }
+
+    public function insertView($id){
+        $db = new connect();
+        $sql = "UPDATE products SET views = views + 1 WHERE id='$id'";
+        return $db -> pdo_execute($sql);
+    }
 }

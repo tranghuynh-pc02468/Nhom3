@@ -7,6 +7,8 @@ if (isset($_GET['id'])) {
     $result = $db->getById($_GET['id']);
     $category_id = $result['category_id'];
     $_SESSION['product_id'] = $result['id'];
+//    tăng lượt xem khi nhấp vào xem chi tiết SP
+    $db -> insertView($id);
 } else {
     $result = [];
 }
@@ -35,7 +37,7 @@ if (isset($_GET['id'])) {
                     <p><?= isset($result['content']) ? $result['content'] : '' ?></p>
                     <!-- <p class="mb-4">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p> -->
                     <p>
-                        <strong class="text-primary h4"><?= isset($result['price']) ? number_format($result['price']) : '' ?></strong>
+                        <strong class="text-primary h4"><?= isset($result['price']) ? number_format($result['price']) : '' ?> đ</strong>
                     </p>
                     <div class="mb-1 d-flex">
                         <?php
@@ -151,7 +153,7 @@ if (isset($_GET['id'])) {
                                         <a href="index.php?page=shop-single&id=<?= $row['id'] ?>"><?= $row['name'] ?></a>
                                     </h3>
                                     <p class="mb-0"></p>
-                                    <p class="text-primary font-weight-bold"><?= number_format($row['price']) ?></p>
+                                    <p class="text-primary font-weight-bold"><?= number_format($row['price']) ?> đ</p>
                                 </div>
                             </div>
                         </div>
