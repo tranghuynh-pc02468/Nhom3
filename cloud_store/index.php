@@ -40,6 +40,7 @@ ob_start();
         include '../admin/sizes/size.php';
         include './accounts/account.php';
         include '../admin/comment/comment.php';
+        include '../admin/order/order.php';
 
 
 
@@ -56,40 +57,41 @@ ob_start();
             case 'contact':
                 include './contact.php';
                 break;
-            case 'cart':
-                include './cart.php';
-                break;
             case 'shop':
                 $db = new product();
-                $restart = $db->getList();
+                $add = $db->getListshop();
+                include './products/shop.php';
+                break;
+            case 'category':
+                $id = $_GET["iddm"];
+                $db = new product();
+                $add = $db->getListCategory($id);
                 include './products/shop.php';
                 break;
             case 'shop-single':
                 include './products/shop-single.php';
                 break;
 
-
-            case 'keyword':
-                $keyword = $_POST['search'];
-                $db = new product();
-                $restart = $db->keyword($keyword);
-                include './products/shop.php';
+            case 'add-to-cart':
+                include './order/add-to-cart.php';
                 break;
-
-
-            // case 'cmt':
-            //     include './comments/comment.php';
-            //     break;
-            // case 'delcmt':
-            //     include './comments/delete.php';
-            //     break;
-            case 'editcmt':
-                include './comments/edit.php';
+            case 'view-cart':
+                include './order/cart.php';
                 break;
-            case 'addcmt':
-                include './comments/add.php';
+            case 'delete-cart':
+                if(isset($_GET['id'])){
+                    array_splice($_SESSION['my-cart'], $_GET['id'], 1);
+                }else{
+                    unset($_SESSION['my-cart']);
+                }
+                include './order/cart.php';
                 break;
-
+            case 'checkout':
+                include './order/check-out.php';
+                break;
+            case 'thanks':
+                include './order/thanks.php';
+                break;
 
             case 'login':
                 include './accounts/login.php';

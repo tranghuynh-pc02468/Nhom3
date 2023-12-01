@@ -51,33 +51,32 @@
                         </div>
                     </div>
                     <div class="row mb-5">
+
+
                         <?php
-                        // $db = new product();
-                        // $restart = $db->getList();
-                        foreach ($restart as $row) {
-                            ?>
 
-                            <div class="col-sm-6 col-lg-4 mb-4 " data-aos="fade-up ">
-                                <div class="block-4 text-center border h-100">
-                                    <figure class="block-4-image">
-                                        <a href="index.php?page=shop-single&id=<?= $row['id'] ?>"><img
-                                                    src="../../upload/<?= $row['image'] ?>" alt="Image placeholder"
-                                                    class="img-fluid"></a>
-                                        <!-- &user_id=<?= $_SESSION['user_id'] ?> -->
-                                    </figure>
-                                    <div class="block-4-text p-4">
-                                        <h3>
-                                            <a href="index.php?page=shop-single&id=<?= $row['id'] ?>"><?= $row['name'] ?></a>
-                                        </h3>
-                                        <p class="mb-0"></p>
-                                        <p class="text-primary font-weight-bold"><?= number_format($row['price']) ?></p>
+                        foreach ($add as $list) {
+                            extract($list);
+
+                            echo '
+                                    <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                                        <div class="block-4 text-center border h-100">
+                                                <figure class="block-4-image">
+                                                <a href="index.php?page=shop-single&id=' . $id . '"><img src="'.$img_path.$image.'" alt="Image placeholder" class="img-fluid"></a>
+                                                </figure>
+                                                <div class="block-4-text p-4">
+                                                <h3><a href="index.php?page=shop-single&id=' . $id . '">' . $name . '</a></h3>
+                                                
+                                                <p class="text-primary font-weight-bold">' . number_format($price) . 'Đ</p>
+                                                </div>
+                                                
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                    ';
 
-                            <?php
                         }
                         ?>
+
 
                     </div>
                     <div class="row" data-aos="fade-up">
@@ -99,13 +98,18 @@
 
                 <div class="col-md-3 order-1 mb-5 mb-md-0">
                     <div class="border p-4 rounded mb-4">
-
-
-                        <h3 class="mb-3 h6 text-uppercase text-black d-block">Danh mục</h3>
+                        <h3 class="mb-3 h6 text-uppercase text-black d-block">Danh Mục</h3>
                         <ul class="list-unstyled mb-0">
-                            <li class="mb-1"><a href="#" class="d-flex"><span>Nike</span></a></li>
-                            <li class="mb-1"><a href="#" class="d-flex"><span>Adidas</span></a></li>
-                            <li class="mb-1"><a href="#" class="d-flex"><span>Puma</span></a></li>
+                            <?php
+                            $db= new category();
+                            $result = $db->getList();
+                            foreach ($result as $item) {
+                                ?>
+                                <li class="mb-1">
+                                    <a href="index.php?page=category&iddm=<?=$item['id']?>"class="d-flex text-uppercase"><span><?=$item['name']?></span></a>
+                                </li>
+                            <?php } ?>
+
                         </ul>
                     </div>
 
@@ -114,19 +118,22 @@
                             <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
                             <div id="slider-range" class="border-primary"></div>
                             <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white"
-                                   disabled=""/>
+                                   disabled="" />
                         </div>
 
                         <div class="mb-4">
                             <h3 class="mb-3 h6 text-uppercase text-black d-block">Size</h3>
                             <label for="s_sm" class="d-flex">
-                                <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Small (2,319)</span>
+                                <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Small
+                                    (2,319)</span>
                             </label>
                             <label for="s_md" class="d-flex">
-                                <input type="checkbox" id="s_md" class="mr-2 mt-1"> <span class="text-black">Medium (1,282)</span>
+                                <input type="checkbox" id="s_md" class="mr-2 mt-1"> <span class="text-black">Medium
+                                    (1,282)</span>
                             </label>
                             <label for="s_lg" class="d-flex">
-                                <input type="checkbox" id="s_lg" class="mr-2 mt-1"> <span class="text-black">Large (1,392)</span>
+                                <input type="checkbox" id="s_lg" class="mr-2 mt-1"> <span class="text-black">Large
+                                    (1,392)</span>
                             </label>
                         </div>
 
@@ -152,8 +159,6 @@
 
                     </div>
                 </div>
-
-
             </div>
 
             <div class="row">
@@ -208,7 +213,6 @@
     </div>
 </div>
 
-
     </body>
 
-</html>
+    </html>

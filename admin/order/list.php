@@ -35,7 +35,10 @@ include "components/sidebar.php";
                                         <th>STT</th>
                                         <th>Người đặt</th>
                                         <th>Ngày đặt hàng</th>
+                                        <th>Địa chỉ</th>
+                                        <th>SĐT</th>
                                         <th>Tồng tiền</th>
+                                        <th>Phương thức thanh toán</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -46,12 +49,19 @@ include "components/sidebar.php";
                                     $i = 1;
                                     foreach($result as $item) {
                                         extract($item);
-                                        // var_dump($list);
+                                        if($payment_method == 1){
+                                            $payment_method = 'VNPay';
+                                        }else{
+                                            $payment_method = 'Trực tiếp';
+                                        }
                                         echo '<tr>
                                                 <td>'.$i.'</td>
                                                 <td>'.$name_user.'</td>
                                                 <td>'.date("d-m-Y", strtotime($date)).' </td>
+                                                <td>'. $address .'</td>
+                                                <td>'. $phone .'</td>
                                                 <td>'.number_format($total).' đ</td>
+                                                <td>'.$payment_method.'</td>
                                                 <td>
                                                     <a href="index.php?page=detail-order&id=' . $id . '" class="btn btn-primary">Chi tiết</a>
                                                 </td>
