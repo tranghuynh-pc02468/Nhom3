@@ -21,39 +21,31 @@
                         <ul>
                             <!-- <li><a href="#"><span class="icon icon-person"></span></a></li> -->
                             <?php
-                            $id = $_SESSION['id'] ?? "";
-                            if (isset($_SESSION['id'])) {
-                                if ($id) {
-                                    // $data = new accounts();
-                                    // $restart = $data->getById($id);
-                                    echo '
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      ' . $_SESSION['name'] . '
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="index.php?page=logout">Đăng xuất</a>
-                    </div>
-                  </div>
-                  
-                  ';
-                                }
+                            $id = $_SESSION['user_id'] ?? "";
+                            $name = $_SESSION['user_name'] ?? "";
+
+                            if (isset($name) && $id) {
+                                // User is logged in, show the user's name in a dropdown
+                                echo '
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            ' . $name . '
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="index.php?page=logout">Đăng xuất</a>
+                        </div>
+                    </div>';
                             } else {
+                                // No active user session, show the login link
                                 echo '<a href="index.php?page=login" data-bs-toggle="modal" aria-labelledby="loginModalLabel" class="user_link">
-                      <span class="icon icon-person"></span></a>';
+                        <span class="icon icon-person"></span>
+                      </a>';
                             }
-
-
                             ?>
 
-
-
-
-                            <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
                             <li>
-                                <a href="#" class="site-cart">
+                                <a href="index.php?page=view-cart" class="site-cart">
                                     <span class="icon icon-shopping_cart"></span>
-                                    <span class="count">2</span>
                                 </a>
                             </li>
                             <li class="d-inline-block d-md-none ml-md-0"><a href="#"

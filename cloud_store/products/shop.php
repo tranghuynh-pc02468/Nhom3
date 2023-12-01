@@ -28,7 +28,6 @@
                                             aria-expanded="false">
                                         Latest
                                     </button>
-
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                                         <a class="dropdown-item" href="#">Men</a>
                                         <a class="dropdown-item" href="#">Women</a>
@@ -53,9 +52,8 @@
                     </div>
                     <div class="row mb-5">
 
+
                         <?php
-                        $db = new product();
-                        $add = $db->getListshop();
 
                         foreach ($add as $list) {
                             extract($list);
@@ -69,7 +67,7 @@
                                                 <div class="block-4-text p-4">
                                                 <h3><a href="index.php?page=shop-single&id=' . $id . '">' . $name . '</a></h3>
                                                 
-                                                <p class="text-primary font-weight-bold">' . number_format($price) . 'đ</p>
+                                                <p class="text-primary font-weight-bold">' . number_format($price) . 'Đ</p>
                                                 </div>
                                                 
                                         </div>
@@ -100,19 +98,19 @@
 
                 <div class="col-md-3 order-1 mb-5 mb-md-0">
                     <div class="border p-4 rounded mb-4">
-                        <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
+                        <h3 class="mb-3 h6 text-uppercase text-black d-block">Danh Mục</h3>
                         <ul class="list-unstyled mb-0">
                             <?php
                             $db= new category();
                             $result = $db->getList();
                             foreach ($result as $item) {
-                            ?>    
-                            <li class="mb-1"><a href="index.php?page=category&id=<?=$item['id']?>"
-                            class="d-flex text-uppercase"><span><?=$item['name']?></span></a>
-                             </li>
+                                ?>
+                                <li class="mb-1">
+                                    <a href="index.php?page=category&iddm=<?=$item['id']?>"class="d-flex text-uppercase"><span><?=$item['name']?></span></a>
+                                </li>
                             <?php } ?>
-                            
-                          </ul>                 
+
+                        </ul>
                     </div>
 
                     <div class="border p-4 rounded mb-4">
@@ -214,7 +212,6 @@
         </div>
     </div>
 </div>
-
 
     </body>
 

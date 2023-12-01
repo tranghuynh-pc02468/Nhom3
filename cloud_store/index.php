@@ -39,6 +39,8 @@ ob_start();
         include '../admin/product/products.php';
         include '../admin/sizes/size.php';
         include './accounts/account.php';
+        include '../admin/comment/comment.php';
+        include '../admin/order/order.php';
 
 
 
@@ -56,22 +58,40 @@ ob_start();
                 include './contact.php';
                 break;
             case 'shop':
+                $db = new product();
+                $add = $db->getListshop();
+                include './products/shop.php';
+                break;
+            case 'category':
+                $id = $_GET["iddm"];
+                $db = new product();
+                $add = $db->getListCategory($id);
                 include './products/shop.php';
                 break;
             case 'shop-single':
                 include './products/shop-single.php';
                 break;
-            case 'search':
-                include './products/shop-list.php';
 
-
-            case 'editcmt':
-                include './comments/edit.php';
+            case 'add-to-cart':
+                include './order/add-to-cart.php';
                 break;
-            case 'addcmt':
-                include './comments/add.php';
+            case 'view-cart':
+                include './order/cart.php';
                 break;
-
+            case 'delete-cart':
+                if(isset($_GET['id'])){
+                    array_splice($_SESSION['my-cart'], $_GET['id'], 1);
+                }else{
+                    unset($_SESSION['my-cart']);
+                }
+                include './order/cart.php';
+                break;
+            case 'checkout':
+                include './order/check-out.php';
+                break;
+            case 'thanks':
+                include './order/thanks.php';
+                break;
 
             case 'login':
                 include './accounts/login.php';
@@ -105,6 +125,8 @@ ob_start();
     <script src="js/aos.js"></script>
 
     <script src="js/main.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     </body>
 
