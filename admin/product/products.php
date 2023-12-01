@@ -34,7 +34,7 @@ class product{
         return $result;
     }
 
-    //Hiển thị mã
+    //Hiển thị mãư
     public function getById($id)
     {
         $pdo = new connect();
