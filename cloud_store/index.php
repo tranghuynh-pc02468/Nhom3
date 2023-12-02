@@ -92,6 +92,9 @@ ob_start();
             case 'thanks':
                 include './order/thanks.php';
                 break;
+            case 'vn-pay':
+                include './order/vnpay_create_payment.php';
+                break;
 
             case 'login':
                 include './accounts/login.php';

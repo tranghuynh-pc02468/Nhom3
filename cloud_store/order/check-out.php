@@ -11,7 +11,7 @@ if (isset($_POST['order-cod'])) {
         $error_address = "Vui lòng nhập thông tin";
     } else {
         if (strlen($address) < 5) {
-        $error_address = "Địa chỉ quá ngắn. Địa chỉ phải có 5 ký tự trở lên";
+            $error_address = "Địa chỉ quá ngắn. Địa chỉ phải có 5 ký tự trở lên";
         }
     }
     if (empty($phone)) {
@@ -22,19 +22,19 @@ if (isset($_POST['order-cod'])) {
         }
     }
 
-    if(!isset($error_address) && !isset($error_phone)){
+    if (!isset($error_address) && !isset($error_phone)) {
         $dbOrder = new order();
-        $result = $dbOrder -> getInsertOrder($user_id, $date, $address, $phone, $total, $payment_method);
-        if($result){
+        $result = $dbOrder->getInsertOrder($user_id, $date, $address, $phone, $total, $payment_method);
+        if ($result) {
             $order_id = $result;
-            for ($i=0; $i < count($_SESSION['my-cart']); $i++){
+            for ($i = 0; $i < count($_SESSION['my-cart']); $i++) {
                 // $product_id, $image, $name, $size, $price, $quantity
                 $product_id = $_SESSION['my-cart'][$i][0];
                 $quantity = $_SESSION['my-cart'][$i][5];
                 $price = $_SESSION['my-cart'][$i][4];
                 $size = $_SESSION['my-cart'][$i][3];
 
-                $dbOrder -> getInsertOrderDetail($order_id, $product_id, $quantity, $price, $size);
+                $dbOrder->getInsertOrderDetail($order_id, $product_id, $quantity, $price, $size);
             }
 
             unset($_SESSION['my-cart']);
@@ -42,6 +42,50 @@ if (isset($_POST['order-cod'])) {
         }
     }
 
+}
+if (isset($_POST['order-vnpay'])) {
+    $user_id = $_SESSION['user_id'];
+    $date = date('Y-m-d');
+    $address = $_POST['address'] ?? '';
+    $phone = $_POST['phone'] ?? '';
+    $_SESSION['total'] = $_POST['total'];
+    $payment_method = 1;
+
+    if (empty($address)) {
+        $error_address = "Vui lòng nhập thông tin";
+    } else {
+        if (strlen($address) < 5) {
+            $error_address = "Địa chỉ quá ngắn. Địa chỉ phải có 5 ký tự trở lên";
+        }
+    }
+    if (empty($phone)) {
+        $error_phone = "Vui lòng nhập thông tin";
+    } else {
+        if (!preg_match('/^0(9|8|7|3)[0-9]{8}$/', $phone)) {
+            $error_phone = "Số điện thoại không hợp lệ";
+        }
+    }
+
+    if (!isset($error_address) && !isset($error_phone)) {
+        $dbOrder = new order();
+        $result = $dbOrder->getInsertOrder($user_id, $date, $address, $phone, $_SESSION['total'], $payment_method);
+        if ($result) {
+            $order_id = $result;
+            for ($i = 0; $i < count($_SESSION['my-cart']); $i++) {
+                // $product_id, $image, $name, $size, $price, $quantity
+                $product_id = $_SESSION['my-cart'][$i][0];
+                $quantity = $_SESSION['my-cart'][$i][5];
+                $price = $_SESSION['my-cart'][$i][4];
+                $size = $_SESSION['my-cart'][$i][3];
+
+                $dbOrder->getInsertOrderDetail($order_id, $product_id, $quantity, $price, $size);
+            }
+
+//            unset($_SESSION['my-cart']);
+//            header('location: index.php?page=thanks');
+        }
+        header('location : index.php?page=vn-pay');
+    }
 }
 ?>
 <div class="bg-light py-3">
