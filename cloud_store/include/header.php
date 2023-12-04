@@ -27,14 +27,15 @@
                             if (isset($name) && $id) {
                                 // User is logged in, show the user's name in a dropdown
                                 echo '
-                    <div class="dropdown">
+                    <li class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             ' . $name . '
-                        </button>
+                        </button>                        
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="index.php?page=profile">Đơn hàng</a>
                             <a class="dropdown-item" href="index.php?page=logout">Đăng xuất</a>
                         </div>
-                    </div>';
+                    </li>';
                             } else {
                                 // No active user session, show the login link
                                 echo '<a href="index.php?page=login" data-bs-toggle="modal" aria-labelledby="loginModalLabel" class="user_link">
