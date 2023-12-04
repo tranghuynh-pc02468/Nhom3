@@ -28,6 +28,28 @@ include "components/sidebar.php";
                     <!-- /.row -->
                     <div class="row">
                         <div class="col-12">
+                            <?php
+                                if (isset($_SESSION['error'])) {
+                                    $message_err = $_SESSION['error'];
+                                    unset($_SESSION['error']);
+                                }
+                                if (isset($_SESSION['message'])) {
+                                    $message = $_SESSION['message'];
+                                    unset($_SESSION['message']);
+                                }
+                                if (isset($message_err))
+                                    echo '
+                                        <div class="alert alert-danger" role="alert">
+                                            ' . $message_err . '
+                                        </div>';
+                                if (isset($message))
+                                    echo '
+                                        <div class="alert alert-success" role="alert">
+                                            ' . $message . '
+                                        </div>';
+                            ?>
+                        </div>
+                        <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Danh Sách Sản Phẩm</h3>
@@ -72,8 +94,8 @@ include "components/sidebar.php";
                                                     <img src=" '.$img_path.$image.' " style="width:100px">
                                                  </td>
                                                 <td>
-                                                    <a href="index.php?page=edit_pro&id=' . $id . '" class="btn btn-primary">Sửa</a>
-                                                    <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href="index.php?page=del_pro&id=' . $id . '" type="button" class="btn btn-danger">Xóa</a>
+                                                    <a href="index.php?page=editpro&id=' . $id . '" class="btn btn-primary">Sửa</a>
+                                                    <a onclick="return confirm(`Bạn có chắc muốn xóa không?`);" href="index.php?page=delpro&id=' . $id . '" type="button" class="btn btn-danger">Xóa</a>
                                                 </td>
                                             </tr>';
                                             $i++;
