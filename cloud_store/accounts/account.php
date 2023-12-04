@@ -31,7 +31,7 @@ class accounts
     public function checkUser($name, $password)
     {
         $db = new connect();
-        $select = "SELECT * FROM users where name ='$name' and password ='$password' and role = '0'";
+        $select = "SELECT * FROM users where name ='$name' and password ='$password'";
         $result = $db->pdo_query_one($select);
         if ($result != null)
             return true;
@@ -64,7 +64,6 @@ class accounts
         $result = $pdo->pdo_query_one($sql);
         return $result;
     }
-
     //Edit
 
     public function getupdate($id, $name, $email, $password, $image, $role)
@@ -84,21 +83,34 @@ class accounts
         return $result;
     }
 
-    public function getDK($name, $email, $password)
-    {
-        $pdo = new connect();
-        $sql = "INSERT INTO users (`name`, `email`, `password`) VALUES ('$name', '$email', '$password')";
-        $result = $pdo->pdo_execute($sql);
-        return $result;
-    }
-
     //Xóa
     public function getDeLeTe($id)
     {
         $pdo = new connect();
         $sql = 'DELETE FROM users WHERE id  =' . $id;
-        $result = $pdo->pdo_query_one($sql);
+        $result = $pdo->pdo_query_one($sql);   
         return $result;
+    }
+
+    // xác nhận mk bằng email
+    public function getUserEmail($email)
+    {
+        $pdo = new connect();
+        $sql = "SELECT * FROM users WHERE email = '$email'";
+        $result = $pdo->pdo_query($sql);
+        if ($result) {
+            return $result;
+        } else {
+            echo "<h4 style='color: red;'>Email không tồn tại</h4> <br>";
+        }
+    }
+
+    function forgetPass($pass, $email)
+    {
+        $db = new connect();
+        // $passwordEncryption = md5($pass);
+        $sql = "UPDATE users SET password ='$pass' WHERE email ='$email'";
+        $result = $db->pdo_execute($sql);
     }
 
 }
