@@ -43,4 +43,19 @@ class order{
         return $db -> pdo_execute($sql);
     }
 
+    public function getOrderByInfo($id){
+        $db = new connect();
+        $sql = "SELECT * FROM orders 
+                WHERE user_id = '$id' 
+                order by date desc";
+        return $db->pdo_query($sql);
+    }
+    function getOrderDetailByInfo($id){
+        $db = new connect();
+        $sql = "SELECT order_detail.*, products.name as pro_name, products.image as pro_image FROM order_detail 
+                JOIN products ON order_detail.product_id = products.id
+                WHERE order_detail.order_id = '$id' ";
+        return $db->pdo_query($sql);
+
+    }
 }
