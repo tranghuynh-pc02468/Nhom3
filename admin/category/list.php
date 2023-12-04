@@ -19,7 +19,7 @@ include "components/sidebar.php";
                     <!-- viết code giao diện ở đây -->
                     <!-- /.row -->
                     <div class="row">
-                        <div class="col-12">
+                        <div id="showError" class="col-12">
                             <?php
                             if (isset($_SESSION['error'])) {
                                 $message_err = $_SESSION['error'];
@@ -113,3 +113,14 @@ include "components/sidebar.php";
 
     </div>
 <?php include 'components/footer.php' ?>
+
+<script>
+    setTimeout(function() {
+        let show =  document.getElementById('showError');
+
+        if (show) {
+        show.style.display = 'none';
+    }
+    }, 4000);
+    
+</script>
