@@ -23,7 +23,7 @@ include "./components/sidebar.php";
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Fixed Header Table</h3>
+                                <h3 class="card-title">Danh sách bình luận</h3>
 
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -36,7 +36,7 @@ include "./components/sidebar.php";
                                 </div>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body table-responsive p-0" style="height: 300px;">
+                            <div class="card-body table-responsive p-0" style="height: 470px;">
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
                                     <tr>
