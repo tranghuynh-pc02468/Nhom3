@@ -61,7 +61,7 @@ include "components/sidebar.php";
                                     <table class="table table-head-fixed text-nowrap">
                                         <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>STT</th>
                                             <th>Tên danh mục</th>
                                             <th></th>
 
@@ -71,11 +71,12 @@ include "components/sidebar.php";
                                         <?php
                                         $db = new category();
                                         $add = $db->getList();
+                                        $i=1;
                                         foreach ($add as $list) {
                                             extract($list);
                                             echo '
                                                     <tr>
-                                                    <td>' . $id . '</td>
+                                                    <td>' . $i . '</td>
                                                     <td>' . $name . '</td>
                                                     <td>
                                                     <a href="index.php?page=editcategory&id=' . $id . '" class="btn btn-primary">Sửa</a>
@@ -87,10 +88,9 @@ include "components/sidebar.php";
                                                     
                                                     </tr>
                                                 ';
-
-
+                                        $i++;
                                         }
-
+                                        
                                         ?>
 
                                         </tbody>
