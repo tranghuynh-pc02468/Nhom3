@@ -103,7 +103,7 @@
                     <?php
 
                     $db = new product();
-                    $restart = $db->getListhome();
+                    $restart = $db->getProductTopView();
                     foreach ($restart as $row) {
 
                         ?>
@@ -111,7 +111,7 @@
                         <div class="item ">
                             <div class="block-4 text-center h-100">
                                 <figure class="block-4-image">
-                                    <img src="images/<?= $row['image'] ?>" alt="Image placeholder" class="img-fluid">
+                                    <img src="../upload/<?= $row['image'] ?>" alt="Image placeholder" class="img-fluid">
                                 </figure>
                                 <div class="block-4-text p-4">
                                     <h3><a href="#"><?= $row['name'] ?></a></h3>

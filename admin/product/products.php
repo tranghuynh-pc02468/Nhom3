@@ -25,7 +25,11 @@ class product{
         return $result;
     }
 
-
+public function getProductTopView(){
+        $db = new connect();
+        $sql = "SELECT * FROM products ORDER BY views DESC LIMIT 6";
+        return $db -> pdo_query($sql);
+}
 
     public function getListshop()
     {
