@@ -1,25 +1,8 @@
 <?php
-
-date_default_timezone_set('Asia/Ho_Chi_Minh');
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-$vnp_TmnCode = "O6M373MC"; //Mã định danh merchant kết nối (Terminal Id)
-$vnp_HashSecret = "HXBHFRLMCHBCWPTCKECOLAYAXHCJCGXO"; //Secret key
-$vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-$vnp_Returnurl = "http://nhom3.test/client/index.php?page=thanks";
-$vnp_apiUrl = "http://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
-$apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
-//Config input format
-//Expire
-$startTime = date("YmdHis");
-$expire = date('YmdHis', strtotime('+15 minutes', strtotime($startTime)));
+require ('config.php');
 
 $vnp_TxnRef = rand(1, 10000); //Mã giao dịch thanh toán tham chiếu của merchant
-$vnp_Amount = $_SESSION['total']; // Số tiền thanh toán
+$vnp_Amount = $_SESSION['order']['total']; // Số tiền thanh toán
 $vnp_Locale = 'vn'; //Ngôn ngữ chuyển hướng thanh toán
 $vnp_BankCode = $_POST['bankCode']; //Mã phương thức thanh toán
 $vnp_IpAddr = $_SERVER['REMOTE_ADDR']; //IP Khách hàng thanh toán
