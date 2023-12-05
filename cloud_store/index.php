@@ -95,6 +95,9 @@ ob_start();
             case 'vn-pay':
                 include './order/vnpay_create_payment.php';
                 break;
+            case 'vnpay-return':
+                include './order/vnpay_return.php';
+                break;
 
             case 'login':
                 include './accounts/login.php';

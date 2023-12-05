@@ -64,11 +64,7 @@ if(isset($_POST['capnhat']) && ($_POST['capnhat'])){
                             <!-- form start -->
                             <form method="post">
                                 <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="email">Mã danh mục</label>
-                                        <input type="text" disabled name="id" class="form-control"
-                                               placeholder="Mục này không được nhập">
-                                    </div>
+                                    
                                     <div class="form-group">
                                         <label>Tên danh mục</label>
                                         <input type="text" class="form-control" name="name"
