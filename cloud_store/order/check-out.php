@@ -1,7 +1,8 @@
 <?php
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 if (isset($_POST['order-cod'])) {
     $user_id = $_SESSION['user_id'];
-    $date = date('Y-m-d');
+    $date = date('Y-m-d H:i:s');
     $address = $_POST['address'] ?? '';
     $phone = $_POST['phone'] ?? '';
     $total = $_POST['total'];
@@ -44,12 +45,9 @@ if (isset($_POST['order-cod'])) {
 
 }
 if (isset($_POST['order-vnpay'])) {
-    $user_id = $_SESSION['user_id'];
-    $date = date('Y-m-d');
     $address = $_POST['address'] ?? '';
     $phone = $_POST['phone'] ?? '';
-    $_SESSION['total'] = $_POST['total'];
-    $payment_method = 1;
+    $_SESSION['order']['total'] = $_POST['total'];
 
     if (empty($address)) {
         $error_address = "Vui lòng nhập thông tin";
@@ -67,31 +65,18 @@ if (isset($_POST['order-vnpay'])) {
     }
 
     if (!isset($error_address) && !isset($error_phone)) {
-        $dbOrder = new order();
-        $result = $dbOrder->getInsertOrder($user_id, $date, $address, $phone, $_SESSION['total'], $payment_method);
-        if ($result) {
-            $order_id = $result;
-            for ($i = 0; $i < count($_SESSION['my-cart']); $i++) {
-                // $product_id, $image, $name, $size, $price, $quantity
-                $product_id = $_SESSION['my-cart'][$i][0];
-                $quantity = $_SESSION['my-cart'][$i][5];
-                $price = $_SESSION['my-cart'][$i][4];
-                $size = $_SESSION['my-cart'][$i][3];
-
-                $dbOrder->getInsertOrderDetail($order_id, $product_id, $quantity, $price, $size);
-            }
-
-//            unset($_SESSION['my-cart']);
-//            header('location: index.php?page=thanks');
+        $_SESSION['order']['address'] = $address;
+        $_SESSION['order']['phone'] = $phone;
+        header('location: index.php?page=vn-pay');
+//        exit();
         }
-        header('location : index.php?page=vn-pay');
-    }
+
 }
 ?>
 <div class="bg-light py-3">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 mb-0"><a href="index.php">Home</a> <span class="mx-2 mb-0">/</span> <a
+            <div class="col-md-12 mb-0"><a href="index.php">Trang chủ</a> <span class="mx-2 mb-0">/</span> <a
                         href="index.php?page=view-cart">Giỏ hàng</a> <span class="mx-2 mb-0">/</span> <strong
                         class="text-black">Thông tin giao hàng</strong></div>
         </div>
@@ -131,8 +116,8 @@ if (isset($_POST['order-vnpay'])) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" value="<?= $_SESSION['user_id'] ?>">
-                            <input type="text" class="form-control" value="<?= date('Y-m-d') ?>">
+                            <input type="hidden" class="form-control" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+                            <input type="hidden" class="form-control" value="<?= date('Y-m-d') ?>">
 
                         </div>
                     </div>
@@ -171,7 +156,7 @@ if (isset($_POST['order-vnpay'])) {
                                     </tbody>
                                 </table>
                                 <div class="form-group">
-                                    <input type="text" name="total" value="<?= $total ?>">
+                                    <input type="hidden" name="total" value="<?= $total ?>">
                                     <button class="btn btn-primary btn-lg py-3 btn-block" type="submit"
                                             name="order-cod">thanh toán khi nhận hàng
                                     </button>
