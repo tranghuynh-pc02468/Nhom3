@@ -25,6 +25,7 @@ if (isset($_POST['themmoi']) && ($_POST['themmoi'])) {
         $db->getAdd($name);
         $_SESSION['message'] = "Thêm thành công";
         header('location: index.php?page=listcategory');
+        
     }
 
 
