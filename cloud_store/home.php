@@ -40,7 +40,7 @@
                     <span class="icon-help"></span>
                 </div>
                 <div class="text">
-                    <h2 class="text-uppercase">Hỗ trọ khách hàng</h2>
+                    <h2 class="text-uppercase">Hỗ trợ khách hàng</h2>
                     <p>Hỗ trợ khách hàng là ưu tiên hàng đầu của chúng tôi - Chúng tôi sẵn lòng giải đáp mọi thắc mắc
                         của bạn.</p>
                 </div>
@@ -55,34 +55,22 @@
             <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
                 <a class="block-2-item" href="#">
                     <figure class="image">
-                        <img src="images/mau1.jpg" alt="" class="img-fluid">
+                        <img src="images/hinh1.jpg" alt="" class="img-fluid">
                     </figure>
-                    <div class="text">
-                        <span class="text-uppercase">Collections</span>
-                        <h3>Women</h3>
-                    </div>
                 </a>
             </div>
             <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
                 <a class="block-2-item" href="#">
                     <figure class="image">
-                        <img src="images/mau2.jpg" alt="" class="img-fluid">
+                        <img src="images/hinh2.jpg" alt="" class="img-fluid">
                     </figure>
-                    <div class="text">
-                        <span class="text-uppercase">Collections</span>
-                        <h3>Children</h3>
-                    </div>
                 </a>
             </div>
             <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
                 <a class="block-2-item" href="#">
                     <figure class="image">
-                        <img src="images/mau3.jpg" alt="" class="img-fluid">
+                        <img src="images/hinh3.jpg" alt="" class="img-fluid">
                     </figure>
-                    <div class="text">
-                        <span class="text-uppercase">Collections</span>
-                        <h3>Men</h3>
-                    </div>
                 </a>
             </div>
         </div>
@@ -116,7 +104,7 @@
                                 <div class="block-4-text p-4">
                                     <h3><a href="#"><?= $row['name'] ?></a></h3>
                                     <p class="mb-0"></p>
-                                    <p class="text-primary font-weight-bold"><?= number_format($row['price']) ?>đ</p>
+                                    <p class="text-primary font-weight-bold"><?= number_format($row['price']) ?> đ</p>
                                 </div>
                             </div>
                         </div>

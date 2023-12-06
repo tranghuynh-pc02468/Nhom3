@@ -4,9 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="loginModalLabel">Đăng nhập</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+
             </div>
             <div class="modal-body">
                 <form action="" method="post">
@@ -29,15 +27,19 @@
                     </div>
                     <?php
                     if (isset($_POST['login'])) {
-                        $user = $_POST['name'];
-                        $password = $_POST['password'];
+                        $user = $_POST['name'] ?? '';
+                        $password = $_POST['password'] ?? '';
+                        if(empty($user) || empty($password)){
+                            echo '<div class="text-danger">Vui lòng nhập thông tin</div>';
+                        }
                         $users = new accounts();
                         if (!empty($user) && !empty($password)) {
                             $id = $users->userid($user, $password);
                             $check = $users->checkUser($user, $password);
-                            $_SESSION['name'] = $user;
+                            $_SESSION['user_name'] = $user;
                             if ($check === true) {
-                                $_SESSION['id'] = $id['id'];
+                                $_SESSION['user_id'] = $id['id'];
+                                $_SESSION['user_mail'] = $id['email'];
                                 header("Location: index.php?page=home");
 
                             } elseif ($check === false) {
