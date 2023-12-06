@@ -4,7 +4,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="loginModalLabel">Đăng nhập</h5>
-
             </div>
             <div class="modal-body">
                 <form action="" method="post">
@@ -39,7 +38,6 @@
                             $_SESSION['user_name'] = $user;
                             if ($check === true) {
                                 $_SESSION['user_id'] = $id['id'];
-                                $_SESSION['user_mail'] = $id['email'];
                                 header("Location: index.php?page=home");
 
                             } elseif ($check === false) {

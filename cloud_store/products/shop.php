@@ -23,24 +23,6 @@
                     <div class="row mb-5">
 
                         <?php
-                        $itemsPerPage = 6; // 6 sp hiển thị 1 trang
-                        // is_numeric kiểm tra giá trị có phải số hay không
-                        $page = isset($_GET['p']) && is_numeric($_GET['p']) ? $_GET['p'] : 1; // Trang số 1
-                        // Số bản ghi trong data
-                        $pdo = new statistical();
-                        $totalItems = $pdo->countProduct();
-
-                        // $totalItems = 30; // Replace with the actual total number of items
-
-                        // Tính số trang
-                        $totalPages = ceil($totalItems / $itemsPerPage); // Calculate total pages
-                        $offset = ($page - 1) * $itemsPerPage; // Starting point for fetching items
-
-                        // Truy vấn sql limit và offset
-                        // $sql = "SELECT * FROM products LIMIT $start, $itemsPerPage";
-                        $pdo = new product();
-                        $result = $pdo->getListP($itemsPerPage, $offset);
-
                         // Hiển thị sp
                         foreach ($result as $row) {
                             echo '<div class="col-sm-6 col-lg-4 mb-4 " data-aos="fade-up ">
@@ -75,7 +57,6 @@
 
                 <div class="col-md-3 order-1 mb-5 mb-md-0">
                     <div class="border p-4 rounded mb-4">
-
 
                         <h3 class="mb-3 h6 text-uppercase text-black d-block">Danh mục</h3>
                         <ul class="list-unstyled mb-0">

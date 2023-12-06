@@ -6,7 +6,7 @@ ob_start();
     <html lang="en">
 
     <head>
-        <title>CLOUD STORE</title>
+        <title>CLOUD STORRE</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="css/adminlte.min.css">
@@ -77,8 +77,27 @@ ob_start();
             case 'shop':
                 $db = new product();
                 $add = $db->getListshop();
+
+                $itemsPerPage = 6; // 6 sp hiển thị 1 trang
+                // is_numeric kiểm tra giá trị có phải số hay không
+                $page = isset($_GET['p']) && is_numeric($_GET['p']) ? $_GET['p'] : 1; // Trang số 1
+                // Số bản ghi trong data
+                $pdo = new statistical();
+                $totalItems = $pdo->countProduct();
+
+                // $totalItems = 30; // Replace with the actual total number of items
+
+                // Tính số trang
+                $totalPages = ceil($totalItems / $itemsPerPage); // Calculate total pages
+                $offset = ($page - 1) * $itemsPerPage; // Starting point for fetching items
+
+                // Truy vấn sql limit và offset
+                // $sql = "SELECT * FROM products LIMIT $start, $itemsPerPage";
+                $pdo = new product();
+                $result = $pdo->getListP($itemsPerPage, $offset);
                 include './products/shop.php';
                 break;
+
             case 'category':
                 $id = $_GET["iddm"];
                 $db = new product();

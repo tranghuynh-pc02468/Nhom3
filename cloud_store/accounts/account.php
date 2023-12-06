@@ -111,7 +111,7 @@ class accounts
         }
     }
 
-    function forgetPass($pass, $email)
+    public function forgetPass($pass, $email)
     {
         $db = new connect();
         // $passwordEncryption = md5($pass);
