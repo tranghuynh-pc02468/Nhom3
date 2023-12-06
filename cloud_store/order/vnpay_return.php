@@ -44,6 +44,8 @@ if ($secureHash == $vnp_SecureHash) {
                 $size = $_SESSION['my-cart'][$i][3];
 
                 $dbOrder->getInsertOrderDetail($order_id, $product_id, $quantity, $price, $size);
+                $db = new product();
+                $db -> updateQuantity($quantity, $product_id);
             }
 
 

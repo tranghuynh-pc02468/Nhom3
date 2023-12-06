@@ -52,8 +52,8 @@ if (isset($_GET['id'])) {
                         <?php } ?>
                     </div>
                     <div class="mb-4"><small class="text-danger"><?php if(isset($_SESSION['error-size'])) echo $_SESSION['error-size']; unset($_SESSION['error-size']); ?></small></div>
-                    <div class="mb-4">
-                        <div class="input-group mb-3" style="max-width: 120px;">
+                    <div class="mb-4 d-flex flex-row">
+                        <div class="input-group mb-3 mr-3" style="max-width: 120px;">
                             <div class="input-group-prepend">
                                 <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
                             </div>
@@ -64,7 +64,7 @@ if (isset($_GET['id'])) {
                                 <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                             </div>
                         </div>
-
+                        <div class="pt-2"><?= $result['quantity'] ?> sản phẩm có sẵn</div>
                     </div>
 
                     <input type="hidden" name="image" value="<?= $result['image'] ?>">
