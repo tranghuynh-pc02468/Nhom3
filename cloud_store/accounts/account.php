@@ -31,7 +31,7 @@ class accounts
     public function checkUser($name, $password)
     {
         $db = new connect();
-        $select = "SELECT * FROM users where name ='$name' and password ='$password' and role = '1'";
+        $select = "SELECT * FROM users where name ='$name' and password ='$password' and role = '0'";
         $result = $db->pdo_query_one($select);
         if ($result != null)
             return true;
@@ -82,7 +82,13 @@ class accounts
         $result = $pdo->pdo_execute($sql);
         return $result;
     }
-
+    public function getDK($name, $email, $password)
+    {
+        $pdo = new connect();
+        $sql = "INSERT INTO users (`name`, `email`, `password`) VALUES ('$name', '$email', '$password')";
+        $result = $pdo->pdo_execute($sql);
+        return $result;
+    }
     //Xóa
     public function getDeLeTe($id)
     {

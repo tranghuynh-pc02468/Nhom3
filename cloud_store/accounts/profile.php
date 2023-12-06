@@ -94,7 +94,7 @@
                                                                 <p class="mb-0">
                                                                     Size giày: <?= $item1['size'] ?>
                                                                 </p>
-                                                                <p>Số lượng:<?= $item1['quantity'] ?>
+                                                                <p>Số lượng: <?= $item1['quantity'] ?>
                                                                 </p>
                                                             </div>
                                                             <div class="col-md-2">
