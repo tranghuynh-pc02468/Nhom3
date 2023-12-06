@@ -1,100 +1,65 @@
-<?php
-if (isset($_POST['register']) && ($_POST['register'])) {
-    $user = $_POST['name'] ?? "";
-    $email = $_POST['email'] ?? "";
-    $password = $_POST['password'] ?? "";
-    $role = 0;
-
-    if (empty($name)) {
-        $error_name = 'Vui lòng nhập tên đăng nhập';
-    } else {
-        $db = new accounts();
-        $result = $db->getList();
-        foreach ($result as $item) {
-            if ($name === $item['name']) {
-                $error_name = 'Tên đăng nhập đã tồn tại';
-            }
-        }
-    }
-
-    if (empty($email)) {
-        $error_email = 'Vui lòng nhập email';
-
-    } elseif (!preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/", $email)) {
-        $error_email = 'Email không đúng định dạng';
-    } else {
-        $db = new accounts();
-        $result = $db->getList();
-        foreach ($result as $item) {
-            if ($email === $item['email']) {
-                $error_email = 'Email đã tồn tại';
-            }
-        }
-    }
-
-    if (empty($password)) {
-        $error_password = 'Vui lòng nhập mật khẩu';
-    }
-
-    if (!isset($error_name) && !isset($error_email) && !isset($error_password)) {
-        $db = new accounts();
-        $result = $db->getDK($name, $email, $password);
-        if ($result) {
-            $_SESSION['message'] = "Thêm thành công";
-            header('location: index.php?page=listuser');
-        } else {
-            $_SESSION['error'] = "Thêm thất bại";
-        }
-    }
-}
-
-
-?>
 <!-- Modal -->
 <div class="" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="loginModalLabel">Đăng ký</h5>
-
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <form action="" method="post">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Tên đăng nhập</label>
+                        <label for="name" class="form-label">Tên đăng ký</label>
                         <input type="text" class="form-control" name="name" aria-describedby="emailHelp">
-                        <?php
-                        if (isset($error_name)) {
-                            echo '<small class="text-danger">' . $error_name . '</small>';
-                        }
-                        ?>
                         <div id="emailHelp" class="form-text"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label">Email</label>
+                        <label for="email" class="form-label">Email</label>
                         <input type="text" class="form-control" name="email" aria-describedby="emailHelp">
-                        <?php
-                        if (isset($error_email)) {
-                            echo '<small class="text-danger">' . $error_email . '</small>';
-                        }
-                        ?>
                         <div id="emailHelp" class="form-text"></div>
                     </div>
+                    <!-- <div class="mb-3">
+                        <label for="address" class="form-label">Địa chỉ</label>
+                        <input type="text" class="form-control" name="address" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Số điện thoại</label>
+                        <input type="number" class="form-control" name="phone" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text"></div>
+                    </div> -->
                     <div class="mb-3">
                         <label for="password" class="form-label">Mật khẩu</label>
                         <input type="password" class="form-control" name="password">
-                        <?php
-                        if (isset($error_password)) {
-                            echo '<small class="text-danger">' . $error_password . '</small>';
-                        }
-                        ?>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="loginCheck1">
+                        <label class="form-check-label" for="loginCheck1">Check me out</label>
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-primary" value="Đăng ký" name="register">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button name="register" type="submit" class="btn btn-primary">Đăng Ký</button>
                     </div>
-
                 </form>
             </div>
         </div>
     </div>
 </div>
+<?php
+
+if (isset($_POST['register'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $address = $_POST['address'];
+    $phone = $_POST['phone'];
+    $image = 0;
+    $role = 0;
+    // $role = $_POST['role'];
+    $data = new accounts();
+    $restart = $data->getAdd($name, $email, $password, $image, $role);
+    header('location: index.php?page=login');
+}
+?>

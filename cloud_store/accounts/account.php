@@ -31,7 +31,7 @@ class accounts
     public function checkUser($name, $password)
     {
         $db = new connect();
-        $select = "SELECT * FROM users where name ='$name' and password ='$password'";
+        $select = "SELECT * FROM users where name ='$name' and password ='$password' and role = '1'";
         $result = $db->pdo_query_one($select);
         if ($result != null)
             return true;
