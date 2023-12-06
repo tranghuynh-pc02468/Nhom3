@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $content = $_POST['content'] ?? "";
     $size = $_POST['sizes'] ?? "";
     $views = 0;
+    $quantity = $_POST['quantity'] ?? '';
 
     // kt loi ten
     if (empty($name)) {
@@ -43,12 +44,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $error_image = "Vui lòng chọn ảnh";
     }
 
+    if(empty($quantity)){
+        $error_quantity = "Vui lòng nhập thông tin";
+    }else{
+        if(!preg_match('/^\d{1,3}$/', $quantity)){
+            $error_quantity = "Vui lòng nhập đúng số lượng";
+        }
+    }
+
 
 
     // var_dump($name, $price, $image, $category_id, $content);
-    if (!isset($error_name) && !isset($error_price) && !isset($error_size) && !isset($error_category) && !isset($error_content) && !isset($error_image)) {
+    if (!isset($error_name) && !isset($error_price) && !isset($error_size) && !isset($error_category) && !isset($error_content) && !isset($error_image) && !isset($error_quantity)) {
         $db = new product();
-        $result = $db->getAdd($category_id, $name, $price, $image, $content, $views);
+        $result = $db->getAdd($category_id, $name, $price, $quantity ,$image, $content, $views);
         if ($result) {
             for ($i = 0; $i < sizeof($size); $i++) {
                 $size_id = $size[$i];
@@ -148,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                             }
                                             ?>
                                         </div>
-                                        <div class="form-group col-12">
+                                        <div class="form-group col-6">
                                             <label for="exampleInputFile">Hình Ảnh</label>
                                             <div class="input-group">
                                                 <div class="custom-file">
@@ -166,6 +175,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                                 echo '<small class="text-danger">' . $error_image . '</small>';
                                             }
                                             ?>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="" class="form-label">Số lượng</label>
+                                            <input type="text" class="form-control" name="quantity">
+                                            <small class="text-danger"><?= $error_quantity ?? '' ?></small>
                                         </div>
                                         <input type="hidden" name="views" value="0">
                                         <div class="form-group col-12">
