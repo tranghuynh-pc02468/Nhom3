@@ -41,7 +41,9 @@ ob_start();
         include './accounts/account.php';
         include '../admin/comment/comment.php';
         include '../admin/order/order.php';
-
+        include '../admin/statistical/statistical.php';
+        include './accounts/PHPMailer/PHPMailer-master/index.php';
+        $mail = new mailer();
 
 
         $action = "home";
@@ -56,6 +58,21 @@ ob_start();
                 break;
             case 'contact':
                 include './contact.php';
+                break;
+            case 'cart':
+                include './products/cart.php';
+                break;
+            case 'forgetpass':
+                $user = new accounts();
+                include './accounts/forgetpass.php';
+                break;
+            case 'verifcation':
+                include './accounts/verification.php';
+                break;
+            case 'resetpass':
+                $forgot_password = new accounts();
+                $user = new accounts();
+                include './accounts/resetpass.php';
                 break;
             case 'shop':
                 $db = new product();
