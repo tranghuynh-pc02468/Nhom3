@@ -1,6 +1,6 @@
 <?php
-if (isset($_POST['register']) && ($_POST['register'])) {
-    $user = $_POST['name'] ?? "";
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $name = $_POST['name'] ?? "";
     $email = $_POST['email'] ?? "";
     $password = $_POST['password'] ?? "";
     $role = 0;
@@ -36,6 +36,8 @@ if (isset($_POST['register']) && ($_POST['register'])) {
         $error_password = 'Vui lòng nhập mật khẩu';
     }
 
+    
+
     if (!isset($error_name) && !isset($error_email) && !isset($error_password)) {
         $db = new accounts();
         $result = $db->getDK($name, $email, $password);
@@ -54,7 +56,7 @@ if (isset($_POST['register']) && ($_POST['register'])) {
 <div class="" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header justify-content-center align-items-center">
                 <h5 class="modal-title" id="loginModalLabel">Đăng ký</h5>
 
             </div>
@@ -89,7 +91,7 @@ if (isset($_POST['register']) && ($_POST['register'])) {
                         }
                         ?>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer justify-content-center align-items-center">
                         <input type="submit" class="btn btn-primary" value="Đăng ký" name="register">
                     </div>
 
