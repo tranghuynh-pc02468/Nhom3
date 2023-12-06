@@ -3,8 +3,9 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Đổi mật khẩu</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <!--                    <span aria-hidden="true">&times;</span>-->
                 </button>
             </div>
             <div class="modal-body">
@@ -42,17 +43,17 @@
                     <?php endif; ?>
 
                     <div class="form-group">
-                        <input type="text" name="newpass" class="contro-login"
+                        <input type="text" name="newpass" class="form-control"
                                value="<?php if (isset($_POST['newpass'])) echo $_POST['newpass'] ?>"
                                placeholder="Nhập mật khẩu mới">
                         <br>
-                        <input type="text" name="repass" class="contro-login"
+                        <input type="text" name="repass" class="form-control"
                                value="<?php if (isset($_POST['repass'])) echo $_POST['repass'] ?>"
                                placeholder="Xác nhận mật khẩu">
                     </div>
 
                     <div class=" form-group">
-                        <button type="submit" class="btn btn-heading btn-block hover-up" name="submit">
+                        <button type="submit" class="btn btn-primary" name="submit">
                             Gửi
                         </button>
                     </div>
