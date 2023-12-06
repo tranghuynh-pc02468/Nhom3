@@ -25,6 +25,17 @@ class product{
         return $result;
     }
 
+
+    // Phân trang
+    public function getListP($start, $itemsPerPage)
+    {
+        // offset xác định vị trí bắt đầu của kết quả
+        $pdo = new connect();
+        $sql = "SELECT * FROM products limit $start offset $itemsPerPage";
+        $result = $pdo->pdo_query($sql);
+        return $result;
+    }
+
 public function getProductTopView(){
         $db = new connect();
         $sql = "SELECT * FROM products ORDER BY views DESC LIMIT 6";

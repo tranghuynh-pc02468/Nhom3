@@ -12,23 +12,29 @@
                     <?php
                     if (isset($_POST['submit'])) {
                         $error = array();
+                        // So sánh mk mơi và mk cũ nếu nó không bằng thì báo mk ko khớp
                         if ($_POST['repass'] != $_POST['newpass']) {
                             $error['fail'] = 'Nhập lại mật khẩu không khớp !';
                         } else {
-                            $error['success'] = 'Đổi mật khẩu thành công ! Chuyển hướng sau 3s.';
+                            // Nếu mk trùng khớp thì $error['success'] sẽ đc thực thi
+                            $error['success'] = 'Đổi mật khẩu thành công ! Chuyển hướng sau 3s.'; //$error['success'] thông báo thành công
                             $user->forgetPass($_POST['newpass'], $_SESSION['mail']);
                             header('refresh:3; index.php?page=login');
                         }
+
                     }
                     ?>
+                    <!-- Nếu nó tồn tại $error và fail nằm trong $error thì sẽ báo lỗi -->
                     <?php if (isset($error) && isset($error['fail'])) : ?>
                         <div class="alert alert-danger" role="alert">
                             <?= $error['fail'] ?>
                         </div>
+                        <!-- Nếu điều kiện trên sai thì kiểm tra $error có chứa từ khóa success hay không-->
                     <?php elseif (isset($error) && isset($error['success'])) : ?>
                         <div class="alert alert-success" role="alert">
                             <?= $error['success'] ?>
                         </div>
+                        <!-- Nếu 2 điều kiện trên sai thì không có lỗi hoặc thông báo thành công nào trong $error -->
                     <?php else : ?>
                         <div class="alert alert-primary" role="alert">
                             Đổi mật khẩu mới tại đây
