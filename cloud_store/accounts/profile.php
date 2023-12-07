@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 mb-0"><a href="index.php">Trang chủ</a> <span class="mx-2 mb-0">/</span> <strong
-                    class="text-black"> Tài khoản</strong></div>
+                        class="text-black"> Tài khoản</strong></div>
         </div>
     </div>
 </div>
@@ -59,10 +59,10 @@
 
                                             <div class="timeline-item p-3">
                                                 <p class=""><span
-                                                        class="font-weight-bold">Số điện thoại:</span> <?= $item['phone'] ?>
+                                                            class="font-weight-bold">Số điện thoại:</span> <?= $item['phone'] ?>
                                                 </p>
                                                 <p class=""><span
-                                                        class="font-weight-bold">Địa chỉ giao hàng:</span> <?= $item['address'] ?>
+                                                            class="font-weight-bold">Địa chỉ giao hàng:</span> <?= $item['address'] ?>
                                                 </p>
                                                 <p class="mb-0"><span class="font-weight-bold">Phương thức thanh
                                                         toán:</span> <?= $item['payment_method'] == 1 ? 'VNPay' : 'Thanh toán khi nhận hàng' ?>
@@ -81,8 +81,8 @@
                                                         ?>
                                                         <div class="row mx-2 align-items-center">
                                                             <div class="col-md-2"><img
-                                                                    src="../upload/<?= $item1['pro_image'] ?>"
-                                                                    class="w-100">
+                                                                        src="../upload/<?= $item1['pro_image'] ?>"
+                                                                        class="w-100">
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="d-flex w-100 justify-content-between">
@@ -103,7 +103,7 @@
                                                         </div>
                                                     <?php } ?>
                                                     <div
-                                                        class="row mx-2 justify-content-end pr-4 text-primary font-weight-bold">
+                                                            class="row mx-2 justify-content-end pr-4 text-primary font-weight-bold">
                                                         Thành tiền:
                                                         <?= number_format($item['total']) ?> đ
                                                     </div>

@@ -34,8 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if (empty($password)) {
         $error_password = 'Vui lòng nhập mật khẩu';
+    } elseif (strlen($password) <= 4) {
+        $error_password = 'Mật khẩu chứa ít nhất 4 ký tự';
     }
-
 
 
     if (!isset($error_name) && !isset($error_email) && !isset($error_password)) {
@@ -43,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $result = $db->getDK($name, $email, $password);
         if ($result) {
             $_SESSION['message'] = "Thêm thành công";
-            header('location: index.php?page=listuser');
+            header('location: index.php?page=login');
         } else {
             $_SESSION['error'] = "Thêm thất bại";
         }

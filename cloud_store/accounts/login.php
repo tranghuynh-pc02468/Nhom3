@@ -28,19 +28,18 @@
                     if (isset($_POST['login'])) {
                         $user = $_POST['name'] ?? '';
                         $password = $_POST['password'] ?? '';
-                        if(empty($user) || empty($password)){
+                        if (empty($user) || empty($password)) {
                             echo '<div class="text-danger">Vui lòng nhập thông tin</div>';
                         }
                         $users = new accounts();
                         if (!empty($user) && !empty($password)) {
-                            $id = $users->userid($user, $password);
-                            $check = $users->checkUser($user, $password);
-                            $_SESSION['user_name'] = $user;
-                            if ($check === true) {
-                                $_SESSION['user_id'] = $id['id'];
+                            // $id = $users->userid($user, $password);
+                            $check = $users->userInfo($user);
+                            if ($check && password_verify($password, $check['password'])) {
+                                $_SESSION['user_name'] = $user;
+                                $_SESSION['user_id'] = $check['id'];
                                 header("Location: index.php?page=home");
-
-                            } elseif ($check === false) {
+                            } else {
                                 echo '<div class="text-danger">Tên đăng nhập hoặc mật khẩu không chính xác</div>';
                             }
                         }

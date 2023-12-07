@@ -19,11 +19,9 @@ if (isset($_POST['edit_size'])) {
 
     if (empty($name)) {
         $error_name = 'Vui lòng nhập thông tin';
-    } elseif (!empty($name)) {
-        $pattern = '/^\d{2}$/';
-        if (!preg_match($pattern, $name)) {
+    } elseif (!preg_match('/^\d{2}$/', $name)) {
             $error_name = 'Size phải là số dương có 2 chử số';
-        }
+
     } else {
         // lấy tất cả tên trong csdl ra để so sánh
         $db = new sizes();
