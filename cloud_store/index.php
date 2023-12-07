@@ -6,11 +6,11 @@ ob_start();
     <html lang="en">
 
     <head>
-        <title>CLOUD STORRE</title>
+        <title>CLOUD STORE | Client</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="css/adminlte.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+        <!--        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">-->
         <link rel="stylesheet" href="fonts/icomoon/style.css">
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -18,12 +18,12 @@ ob_start();
         <link rel="stylesheet" href="css/jquery-ui.css">
         <link rel="stylesheet" href="css/owl.carousel.min.css">
         <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-
         <link rel="stylesheet" href="css/aos.css">
 
         <link rel="stylesheet" href="css/style.css">
         <script src="https://kit.fontawesome.com/8ea8a81b6f.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     </head>
 
     <body>
@@ -76,8 +76,8 @@ ob_start();
                 break;
 
             case 'shop':
-                $db = new product();
-                $add = $db->getListshop();
+//                $db = new product();
+//                $add = $db->getListshop();
 
                 $itemsPerPage = 6; // 6 sp hiển thị 1 trang
                 // is_numeric kiểm tra giá trị có phải số hay không
@@ -102,11 +102,18 @@ ob_start();
             case 'category':
                 $id = $_GET["iddm"];
                 $db = new product();
-                $add = $db->getListCategory($id);
+                $result = $db->getListCategory($id);
                 include './products/shop.php';
                 break;
             case 'shop-single':
                 include './products/shop-single.php';
+                break;
+
+            case 'keyword':
+                $keyword = isset($_POST['search']) ? $_POST['search'] : '';
+                $db = new product();
+                $result = $db->keyword($keyword);
+                include './products/shop.php';
                 break;
 
             case 'add-to-cart':
