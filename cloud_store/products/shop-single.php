@@ -40,6 +40,10 @@ if (isset($_GET['id'])) {
                         <strong class="text-primary h4"><?= isset($result['price']) ? number_format($result['price']) : '' ?> đ</strong>
                     </p>
                     <div class="mb-1 d-flex">
+                        <!--                        <div class="custom-control custom-radio mr-3">-->
+                        <!--                            <input class="custom-control-input" type="radio" id="hhh" name="size" value="1">-->
+                        <!--                            <label for="hhh" class="custom-control-label text-primary">h</label>-->
+                        <!--                        </div>-->
                         <?php
                         $size = new sizes();
                         $getSize = $size->size_editProduct($id);
@@ -49,7 +53,9 @@ if (isset($_GET['id'])) {
                                 <input class="custom-control-input" type="radio" id="<?= $item['name'] ?>" name="size" value="<?= $item['name'] ?>">
                                 <label for="<?= $item['name'] ?>" class="custom-control-label text-primary"><?= $item['name'] ?></label>
                             </div>
-                        <?php } ?>
+                            <?php
+                        }
+                        ?>
                     </div>
                     <div class="mb-4"><small class="text-danger"><?php if(isset($_SESSION['error-size'])) echo $_SESSION['error-size']; unset($_SESSION['error-size']); ?></small></div>
                     <div class="mb-4 d-flex flex-row">

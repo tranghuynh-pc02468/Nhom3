@@ -103,7 +103,7 @@ if ($product_id !== null) {
         // Check if the user is logged in
         if (isset($_SESSION['user_name'])) {
             $db = new comments();
-            $tpmuser_id = $_SESSION['user_id'];
+            $user_id = $_SESSION['user_id'];
             $content = $_POST['content'];
             $product_id = $_POST['product_id'];
             $date = date('Y-m-d');

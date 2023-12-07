@@ -32,7 +32,7 @@ class product{
     {
         // offset xác định vị trí bắt đầu của kết quả
         $pdo = new connect();
-        $sql = "SELECT * FROM products limit $start offset $itemsPerPage";
+        $sql = "SELECT * FROM products where quantity > 0  limit $start offset $itemsPerPage";
         $result = $pdo->pdo_query($sql);
         return $result;
     }
@@ -56,7 +56,7 @@ public function getProductTopView(){
     {
         $pdo = new connect();
         $sql = "SELECT * FROM products
-                WHERE category_id='$id' AND quantity > 0 ";
+                WHERE category_id='$id' AND quantity > 0";
         $result = $pdo->pdo_query($sql);
         return $result;
     }

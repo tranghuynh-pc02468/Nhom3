@@ -45,8 +45,10 @@
                             <div class="site-block-27">
                                 <ul class="pagination">
                                     <?php
-                                    for ($i = 1; $i <= $totalPages; $i++) {
-                                        echo '<li' . ($i == $page ? ' class="active"' : '') . '><a href="index.php?page=shop&p=' . $i . '">' . $i . '</a></li>';
+                                    if (isset($totalPages)) {
+                                        for ($i = 1; $i <= $totalPages; $i++) {
+                                            echo '<li' . ($i == $page ? ' class="active"' : '') . '><a href="index.php?page=shop&p=' . $i . '">' . $i . '</a></li>';
+                                        }
                                     };
                                     ?>
                                 </ul>
