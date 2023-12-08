@@ -76,7 +76,6 @@ ob_start();
                 $user = new accounts();
                 include './accounts/resetpass.php';
                 break;
-
             case 'shop':
 //                $db = new product();
 //                $add = $db->getListshop();
