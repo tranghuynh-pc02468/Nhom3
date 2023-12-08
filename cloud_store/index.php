@@ -6,11 +6,11 @@ ob_start();
     <html lang="en">
 
     <head>
-        <title>Shoppers &mdash; Colorlib e-Commerce Template</title>
+        <title>CLOUD STORE | Client</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="css/adminlte.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+        <!--        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">-->
         <link rel="stylesheet" href="fonts/icomoon/style.css">
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -18,12 +18,12 @@ ob_start();
         <link rel="stylesheet" href="css/jquery-ui.css">
         <link rel="stylesheet" href="css/owl.carousel.min.css">
         <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-
         <link rel="stylesheet" href="css/aos.css">
 
         <link rel="stylesheet" href="css/style.css">
         <script src="https://kit.fontawesome.com/8ea8a81b6f.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     </head>
 
     <body>
@@ -41,7 +41,9 @@ ob_start();
         include './accounts/account.php';
         include '../admin/comment/comment.php';
         include '../admin/order/order.php';
-
+        include '../admin/statistical/statistical.php';
+        include './accounts/PHPMailer/PHPMailer-master/index.php';
+        $mail = new mailer();
 
 
         $action = "home";
@@ -57,19 +59,60 @@ ob_start();
             case 'contact':
                 include './contact.php';
                 break;
+            case 'cart':
+                include './products/cart.php';
+                break;
+            case 'forgetpass':
+                $user = new accounts();
+                include './accounts/forgetpass.php';
+                break;
+            case 'verifcation':
+                include './accounts/verification.php';
+                break;
+            case 'resetpass':
+                $forgot_password = new accounts();
+                $user = new accounts();
+                include './accounts/resetpass.php';
+                break;
             case 'shop':
-                $db = new product();
-                $add = $db->getListshop();
+//                $db = new product();
+//                $add = $db->getListshop();
+
+                $itemsPerPage = 6; // 6 sp hiển thị 1 trang
+                // is_numeric kiểm tra giá trị có phải số hay không
+                $page = isset($_GET['p']) && is_numeric($_GET['p']) ? $_GET['p'] : 1; // Trang số 1
+                // Số bản ghi trong data
+                $pdo = new statistical();
+                $totalItems = $pdo->countProduct();
+
+                // $totalItems = 30; // Replace with the actual total number of items
+
+                // Tính số trang
+                $totalPages = ceil($totalItems / $itemsPerPage); // Calculate total pages
+                $offset = ($page - 1) * $itemsPerPage; // Starting point for fetching items
+
+                // Truy vấn sql limit và offset
+                // $sql = "SELECT * FROM products LIMIT $start, $itemsPerPage";
+                $pdo = new product();
+                $result = $pdo->getListP($itemsPerPage, $offset);
                 include './products/shop.php';
                 break;
+
             case 'category':
                 $id = $_GET["iddm"];
                 $db = new product();
-                $add = $db->getListCategory($id);
+                $result = $db->getListCategory($id);
                 include './products/shop.php';
                 break;
             case 'shop-single':
                 include './products/shop-single.php';
+                break;
+
+            case 'keyword':
+                $keyword = isset($_POST['search']) ? $_POST['search'] : '';
+                $db = new product();
+                $result = $db->keyword($keyword);
+                include './products/shop.php';
                 break;
 
             case 'add-to-cart':

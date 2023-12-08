@@ -7,6 +7,7 @@ class product{
     var $image = null;
     var $content = null;
     var $views = null;
+    var $quantity = null;
 
     public function keyword($keyword)
     {
@@ -25,17 +26,28 @@ class product{
         return $result;
     }
 
+
+    // Phân trang
+    public function getListP($start, $itemsPerPage)
+    {
+        // offset xác định vị trí bắt đầu của kết quả
+        $pdo = new connect();
+        $sql = "SELECT * FROM products where quantity > 0  limit $start offset $itemsPerPage";
+        $result = $pdo->pdo_query($sql);
+        return $result;
+    }
+
 public function getProductTopView(){
         $db = new connect();
-        $sql = "SELECT * FROM products ORDER BY views DESC LIMIT 6";
+        $sql = "SELECT * FROM products WHERE quantity > 0 ORDER BY views DESC LIMIT 6";
         return $db -> pdo_query($sql);
 }
 
     public function getListshop()
     {
         $pdo = new connect();
-        $sql = "SELECT * FROM products
-                ORDER BY id DESC limit 9";
+        $sql = "SELECT * FROM products WHERE quantity > 0
+                ORDER BY id DESC";
         $result = $pdo->pdo_query($sql);
         return $result;
     }
@@ -44,7 +56,7 @@ public function getProductTopView(){
     {
         $pdo = new connect();
         $sql = "SELECT * FROM products
-                WHERE category_id=$id";
+                WHERE category_id='$id' AND quantity > 0";
         $result = $pdo->pdo_query($sql);
         return $result;
     }
@@ -60,19 +72,19 @@ public function getProductTopView(){
 
 
     //Edit
-    public function getupdate($id, $category_id, $name, $price, $image, $content, $views)
+    public function getupdate($id, $category_id, $name, $price, $quantity, $image, $content, $views)
     {
         $pdo = new connect();
-        $sql = "UPDATE products SET id = '$id', category_id = '$category_id' ,name = '$name', price = '$price', image = '$image', content = '$content', views='$views', WHERE id = " . $id;
+        $sql = "UPDATE products SET id = '$id', category_id = '$category_id' ,name = '$name', price = '$price', quantity='$quantity', image = '$image', content = '$content', views='$views' WHERE id = " . $id;
         $result = $pdo->pdo_execute($sql);
         return $result;
     }
 
     //Add
-    public function getAdd($category_id, $name, $price, $image, $content, $views)
+    public function getAdd($category_id, $name, $price, $quantity, $image, $content, $views)
     {
         $pdo = new connect();
-        $sql = "INSERT INTO products (`category_id`, `name`, `price`, `image`, `content`, `views`) VALUES ('$category_id', '$name', '$price', '$image', '$content', '$views')";
+        $sql = "INSERT INTO products (`category_id`, `name`, `price`, `quantity`, `image`, `content`, `views`) VALUES ('$category_id', '$name', '$price', '$quantity' ,'$image', '$content', '$views')";
         $result = $pdo->pdo_execute($sql);
         return $result;
     }
@@ -89,13 +101,19 @@ public function getProductTopView(){
 //    SP liên quan
     public function getListDM($id, $category_id){
         $db = new connect();
-        $sql = "SELECT * FROM products WHERE category_id='$category_id' AND id <> '$id' ";
+        $sql = "SELECT * FROM products WHERE category_id='$category_id' AND id <> '$id' AND quantity > 0";
         return $db -> pdo_query($sql);
     }
 
     public function insertView($id){
         $db = new connect();
         $sql = "UPDATE products SET views = views + 1 WHERE id='$id'";
+        return $db -> pdo_execute($sql);
+    }
+
+    public function updateQuantity($quantity, $id){
+        $db = new connect();
+        $sql = "UPDATE products SET quantity = quantity - '$quantity' WHERE id = '$id'";
         return $db -> pdo_execute($sql);
     }
 }

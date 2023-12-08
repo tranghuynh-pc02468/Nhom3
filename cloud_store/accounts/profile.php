@@ -94,8 +94,7 @@
                                                                 <p class="mb-0">
                                                                     Size giày: <?= $item1['size'] ?>
                                                                 </p>
-                                                                <p>Số lượng:
-                                                                    <?= $item1['quantity'] ?>
+                                                                <p>Số lượng: <?= $item1['quantity'] ?>
                                                                 </p>
                                                             </div>
                                                             <div class="col-md-2">
@@ -103,7 +102,8 @@
                                                             </div>
                                                         </div>
                                                     <?php } ?>
-                                                    <div class="row mx-2 justify-content-end pr-4 text-primary font-weight-bold">
+                                                    <div
+                                                            class="row mx-2 justify-content-end pr-4 text-primary font-weight-bold">
                                                         Thành tiền:
                                                         <?= number_format($item['total']) ?> đ
                                                     </div>

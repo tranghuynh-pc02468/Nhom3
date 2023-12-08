@@ -1,3 +1,5 @@
+
+
 <div class="col-lg-4 col-md-8 col-12 mx-auto mt-5">
     <div class="card z-index-0 fadeIn3 fadeInBottom">
         <div class="card-body">
@@ -7,10 +9,6 @@
                 </div>
                 <div class="input-group input-group-outline mb-3">
                     <input type="password" name="password" placeholder="Password" class="form-control">
-                </div>
-                <div class="form-check form-switch d-flex align-items-center mb-3">
-                    <input class="form-check-input" type="checkbox" id="rememberMe" name="remember" checked>
-                    <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>
                 </div>
                 <div class="text-center">
                     <button class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>

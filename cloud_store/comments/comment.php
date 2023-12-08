@@ -81,7 +81,7 @@ if ($product_id !== null) {
         <?php
 
 
-        if (isset($_SESSION['name'])) {
+        if (isset($_SESSION['user_name'])) {
             // Hiển thị form bình luận nếu người dùng đã đăng nhập
             echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="post">
                         <input type="hidden" name="product_id" value="' . $product_id . '">
@@ -101,9 +101,9 @@ if ($product_id !== null) {
         // Start the session
 
         // Check if the user is logged in
-        if (isset($_SESSION['name'])) {
+        if (isset($_SESSION['user_name'])) {
             $db = new comments();
-            $tpmuser_id = $_SESSION['id'];
+            $user_id = $_SESSION['user_id'];
             $content = $_POST['content'];
             $product_id = $_POST['product_id'];
             $date = date('Y-m-d');

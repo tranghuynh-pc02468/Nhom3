@@ -34,16 +34,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if (empty($password)) {
         $error_password = 'Vui lòng nhập mật khẩu';
+    } elseif (strlen($password) <= 4) {
+        $error_password = 'Mật khẩu chứa ít nhất 4 ký tự';
     }
 
-    
 
     if (!isset($error_name) && !isset($error_email) && !isset($error_password)) {
         $db = new accounts();
         $result = $db->getDK($name, $email, $password);
         if ($result) {
             $_SESSION['message'] = "Thêm thành công";
-            header('location: index.php?page=listuser');
+            header('location: index.php?page=login');
         } else {
             $_SESSION['error'] = "Thêm thất bại";
         }
@@ -56,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <div class="" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header justify-content-center align-items-center">
+            <div class="modal-header">
                 <h5 class="modal-title" id="loginModalLabel">Đăng ký</h5>
 
             </div>
@@ -91,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         }
                         ?>
                     </div>
-                    <div class="modal-footer justify-content-center align-items-center">
+                    <div class="modal-footer">
                         <input type="submit" class="btn btn-primary" value="Đăng ký" name="register">
                     </div>
 

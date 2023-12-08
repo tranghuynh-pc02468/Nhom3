@@ -72,6 +72,7 @@ include "components/sidebar.php";
                                             <th>STT</th>
                                             <th>Tên Sản Phẩm</th>
                                             <th>Giá Sản Phẩm</th>
+                                            <th>Số lượng</th>
                                             <th>Hình Ảnh</th>
                                             <th></th>
                                         </tr>
@@ -90,6 +91,7 @@ include "components/sidebar.php";
                                                 <td>'.$i.'</td>
                                                 <td>'.$name.'</td>
                                                 <td>'.number_format($price).' đ</td>
+                                                <td>'.$quantity.'</td>
                                                 <td>
                                                     <img src=" '.$img_path.$image.' " style="width:100px">
                                                  </td>

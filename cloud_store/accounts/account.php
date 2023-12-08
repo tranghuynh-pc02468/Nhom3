@@ -9,7 +9,7 @@ class accounts
     var $password = null;
     var $image = null;
     var $role = null;
-
+    var $hashedPassword = null;
 
     //Hiển thị bảng
     public function getList()
@@ -39,10 +39,10 @@ class accounts
             return false;
     }
 
-    public function userid($name, $password)
+    public function userInfo($name)
     {
         $db = new connect();
-        $select = "SELECT id FROM users where name='$name' and password = '$password'";
+        $select = "SELECT * FROM users where name='$name'";
         $result = $db->pdo_query_one($select);
         return $result;
     }
@@ -64,7 +64,6 @@ class accounts
         $result = $pdo->pdo_query_one($sql);
         return $result;
     }
-
     //Edit
 
     public function getupdate($id, $name, $email, $password, $image, $role)
@@ -83,15 +82,14 @@ class accounts
         $result = $pdo->pdo_execute($sql);
         return $result;
     }
-
     public function getDK($name, $email, $password)
     {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $pdo = new connect();
-        $sql = "INSERT INTO users (`name`, `email`, `password`) VALUES ('$name', '$email', '$password')";
+        $sql = "INSERT INTO users (`name`, `email`, `password`) VALUES ('$name', '$email', '$hashedPassword')";
         $result = $pdo->pdo_execute($sql);
         return $result;
     }
-
     //Xóa
     public function getDeLeTe($id)
     {
@@ -99,6 +97,27 @@ class accounts
         $sql = 'DELETE FROM users WHERE id  =' . $id;
         $result = $pdo->pdo_query_one($sql);
         return $result;
+    }
+
+    // xác nhận mk bằng email
+    public function getUserEmail($email)
+    {
+        $pdo = new connect();
+        $sql = "SELECT * FROM users WHERE email = '$email'";
+        $result = $pdo->pdo_query($sql);
+        if ($result) {
+            return $result;
+        } else {
+            echo "<h4 style='color: red;'>Email không tồn tại</h4> <br>";
+        }
+    }
+
+    public function forgetPass($pass, $email)
+    {
+        $db = new connect();
+        // $passwordEncryption = md5($pass);
+        $sql = "UPDATE users SET password ='$pass' WHERE email ='$email'";
+        $result = $db->pdo_execute($sql);
     }
 
 }

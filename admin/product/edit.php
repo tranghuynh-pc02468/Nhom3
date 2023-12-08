@@ -22,6 +22,7 @@ if (isset($_POST['editpro'])) {
     $content = $_POST['content'] ?? "";
     $size = $_POST['sizes'] ?? "";
     $views = $_POST['views'];
+    $quantity = $_POST['quantity'] ?? '';
 
     // kt loi ten
     if (empty($name)) {
@@ -48,17 +49,23 @@ if (isset($_POST['editpro'])) {
     if (empty($content)) {
         $error_content = "Không được bỏ trống";
     }
-
+    if(empty($quantity)){
+        $error_quantity = "Vui lòng nhập thông tin";
+    }else{
+        if(!preg_match('/^\d{1,3}$/', $quantity)){
+            $error_quantity = "Vui lòng nhập đúng số lượng";
+        }
+    }
 
 // var_dump($name, $price, $image, $category_id, $content);
-    if (!isset($error_name) && !isset($error_price) && !isset($error_size) && !isset($error_category) && !isset($error_content)) {
+    if (!isset($error_name) && !isset($error_price) && !isset($error_size) && !isset($error_category) && !isset($error_content) && !isset($error_quantity)) {
         // Xóa product_id = id đang sửa ở bảng size_detail
         $dbSizeDetail = new size_detail();
         $dbSizeDetail->getDeleteProductId($id);
 
         // Cập nhật lại sản phẩm
         $db = new product();
-        $lastInsertId = $db->getupdate($id, $category_id, $name, $price, $image, $content, $views);
+        $lastInsertId = $db->getupdate($id, $category_id, $name, $price, $quantity, $image, $content, $views);
 
         // insert lại theo id sp đang sửa và size đã chọn
         for ($i = 0; $i < sizeof($size); $i++) {
@@ -180,33 +187,30 @@ if (isset($_POST['editpro'])) {
                                             }
                                             ?>
                                         </div>
-                                        <div class="form-group col-12">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <label for="exampleInputFile">Hình Ảnh</label>
-                                                    <div class="input-group">
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" name="image_upload">
-                                                            <input type="hidden" value="<?=$image?>" name="image">
-                                                            <label class="custom-file-label" for="exampleInputFile">Choose
-                                                                file</label>
-                                                        </div>
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text">Upload</span>
-                                                        </div>
-                                                    </div>
-                                                    <?php
-                                                    if (isset($error_image)) {
-                                                        echo '<small class="text-danger">' . $error_image . '</small>';
-                                                    }
-                                                    ?>
+                                        <div class="form-group col-6">
+                                            <label for="exampleInputFile">Hình Ảnh</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="image_upload">
+                                                    <input type="hidden" value="<?=$image?>" name="image">
+                                                    <label class="custom-file-label" for="exampleInputFile">Choose
+                                                        file</label>
                                                 </div>
-                                                <div class="col-lg-6 mt-4">
-                                                    <img src="../upload/<?= $image ?>" alt="" style="width:100px;">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">Upload</span>
                                                 </div>
                                             </div>
+                                            <?php
+                                            if (isset($error_image)) {
+                                                echo '<small class="text-danger">' . $error_image . '</small>';
+                                            }
+                                            ?>
 
-
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="" class="form-label">Số lượng</label>
+                                            <input type="text" class="form-control" name="quantity" value="<?= $quantity ?>">
+                                            <small class="text-danger"><?= $error_quantity ?? '' ?></small>
                                         </div>
                                         <input type="hidden" name="views" value="<?= $views ?>">
                                         <div class="form-group col-12">
