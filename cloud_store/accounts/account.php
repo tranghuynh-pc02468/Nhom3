@@ -114,9 +114,10 @@ class accounts
 
     public function forgetPass($pass, $email)
     {
+        $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
         $db = new connect();
         // $passwordEncryption = md5($pass);
-        $sql = "UPDATE users SET password ='$pass' WHERE email ='$email'";
+        $sql = "UPDATE users SET password ='$hashedPassword' WHERE email ='$email'";
         $result = $db->pdo_execute($sql);
     }
 

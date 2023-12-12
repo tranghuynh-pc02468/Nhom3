@@ -20,6 +20,7 @@
                         <?php
                         $db = new accounts();
                         $result = $db->getById($_SESSION['user_id']);
+                        $_SESSION['user_email']=$result['email'];
                         ?>
                         <p class="text-muted text-center"><?= $result['email'] ?></p>
                         <a href="index.php?page=logout" class="btn btn-primary btn-block mt-4">Đăng xuất</a>
