@@ -59,7 +59,7 @@ if (isset($_POST['order-cod'])) {
         <div class="container">
             <div class="row mt-3">
                 <div class="col-md-6 offset-3 ">
-                    <p>Xin chào '.$_POST['user_name'].', <br> Đơn hàng của bạn đã được đặt thành công</p>
+                    <p>Xin chào ' . $_POST['user_name'] . ', <br> Đơn hàng của bạn đã được đặt thành công</p>
                     <h5>Địa chỉ thanh toán</h5>
                      <div class="mb-4">
                         <p class="mb-0">tên</p>
@@ -224,11 +224,11 @@ if (isset($_POST['order-vnpay'])) {
                                     <?php
                                     $total = 0;
                                     foreach ($_SESSION['my-cart'] as $item) {
-                                        //$product_id, $image, $name, $size, $price, $quantity
+                                        //$product_id[0], $image[1], $name[2], $size, $price, $quantity
                                         $total = $total + ($item[4] * $item[5]);
                                         ?>
                                         <tr>
-                                            <td><?= $item[1] ?><strong class="mx-2">x</strong><?= $item[5] ?></td>
+                                            <td><?= $item[2] ?><strong class="mx-2">x</strong><?= $item[5] ?></td>
                                             <td><?= number_format($item[4] * $item[5]) ?> đ</td>
                                         </tr>
                                     <?php } ?>
