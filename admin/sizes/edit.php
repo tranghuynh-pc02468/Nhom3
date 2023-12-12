@@ -41,7 +41,6 @@ if (isset($_POST['edit_size'])) {
     }
 
 }
-
 ?>
 
 <div class="wrapper">

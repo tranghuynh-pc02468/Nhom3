@@ -6,9 +6,9 @@ require 'src/SMTP.php';
 
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
 
 
 class mailer
@@ -32,7 +32,7 @@ class mailer
             $mail->Port = 465; // TCP port to connect to
 
             //Recipients
-            $mail->setFrom('trangltppc05840@fpt.edu.vn', 'Xác nhận mật khẩu');
+            $mail->setFrom('trangltppc05840@fpt.edu.vn', 'CLOUD STORE');
             $mail->addAddress($addressMail); // Add a recipient
             // $mail->addAddress('ellen@example.com'); // Name is optional
             // $mail->addReplyTo('info@example.com', 'Information');
