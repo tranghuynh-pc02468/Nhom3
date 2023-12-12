@@ -32,7 +32,7 @@ class mailer
             $mail->Port = 465; // TCP port to connect to
 
             //Recipients
-            $mail->setFrom('trangltppc05840@fpt.edu.vn', 'Xác nhận mật khẩu');
+            $mail->setFrom('trangltppc05840@fpt.edu.vn', 'CLOUD STORE');
             $mail->addAddress($addressMail); // Add a recipient
             // $mail->addAddress('ellen@example.com'); // Name is optional
             // $mail->addReplyTo('info@example.com', 'Information');
