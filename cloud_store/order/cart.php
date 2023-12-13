@@ -10,7 +10,7 @@
     <div class="site-section">
         <div class="container">
             <?php
-            if (isset($_SESSION['my-cart']) && count($_SESSION['my-cart']) > 0) { var_dump($_SESSION['my-cart']);
+            if (isset($_SESSION['my-cart']) && count($_SESSION['my-cart']) > 0) { //var_dump($_SESSION['my-cart']);
                 ?>
                 <div class="row mb-5">
                     <form class="col-md-12" method="post">

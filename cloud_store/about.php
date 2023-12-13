@@ -26,14 +26,18 @@
 
 
                     <div class="site-section-heading pt-3 mb-4">
-                        <h2 class="text-black">Chúng tôi đã bắt đầu như thế nào!</h2>
+                        <h2 class="text-black">Về Cloud Store!</h2>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius repellat, dicta at laboriosam,
-                        nemo exercitationem itaque eveniet architecto cumque, deleniti commodi molestias repellendus
-                        quos sequi hic fugiat asperiores illum. Atque, in, fuga excepturi corrupti error corporis
-                        aliquam unde nostrum quas.</p>
-                    <p>Accusantium dolor ratione maiores est deleniti nihil? Dignissimos est, sunt nulla illum autem in,
-                        quibusdam cumque recusandae, laudantium minima repellendus.</p>
+                    <p class="text-justify">Cloud Store là một trang web thương mại điện tử chuyên cung cấp giày sneaker
+                        chất lượng từ các
+                        thương hiệu nổi tiếng như Nike, Adidas, Puma. Với giao diện trực quan, người dùng
+                        dễ dàng duyệt qua hàng ngàn mẫu giày, tìm kiếm theo sở thích và lựa chọn sản phẩm phù hợp.</p>
+                    <p class="text-justify">
+                        Ngoài việc cung cấp thông tin chi tiết về sản phẩm, trang web còn có các tính năng tiện ích như
+                        tìm
+                        kiếm nâng cao, giỏ hàng và hệ thống thanh toán an toàn. Cloud Store mang đến trải nghiệm mua sắm
+                        trực tuyến thuận tiện, đa dạng và phong phú cho người dùng.
+                    </p>
 
                 </div>
             </div>
@@ -44,7 +48,7 @@
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-md-7 site-section-heading text-center pt-4">
-                    <h2>The Team</h2>
+                    <h2>Thành viên nhóm</h2>
                 </div>
             </div>
             <div class="row">
@@ -54,12 +58,7 @@
                         <div class="block-38-img">
                             <div class="block-38-header">
                                 <img src="images/person_1.jpg" alt="Image placeholder" class="mb-4">
-                                <h3 class="block-38-heading h4">Elizabeth Graham</h3>
-                                <p class="block-38-subheading">CEO/Co-Founder</p>
-                            </div>
-                            <div class="block-38-body">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit
-                                    distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+                                <h3 class="block-38-heading h5">Huỳnh Thị Thiên Trang</h3>
                             </div>
                         </div>
                     </div>
@@ -69,12 +68,7 @@
                         <div class="block-38-img">
                             <div class="block-38-header">
                                 <img src="images/person_2.jpg" alt="Image placeholder" class="mb-4">
-                                <h3 class="block-38-heading h4">Jennifer Greive</h3>
-                                <p class="block-38-subheading">Co-Founder</p>
-                            </div>
-                            <div class="block-38-body">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit
-                                    distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+                                <h3 class="block-38-heading h5">Lê Thị Phương Trang</h3>
                             </div>
                         </div>
                     </div>
@@ -84,12 +78,7 @@
                         <div class="block-38-img">
                             <div class="block-38-header">
                                 <img src="images/person_3.jpg" alt="Image placeholder" class="mb-4">
-                                <h3 class="block-38-heading h4">Patrick Marx</h3>
-                                <p class="block-38-subheading">Marketing</p>
-                            </div>
-                            <div class="block-38-body">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit
-                                    distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+                                <h3 class="block-38-heading h5">Hồ Hoàng Thông</h3>
                             </div>
                         </div>
                     </div>
@@ -99,12 +88,7 @@
                         <div class="block-38-img">
                             <div class="block-38-header">
                                 <img src="images/person_4.jpg" alt="Image placeholder" class="mb-4">
-                                <h3 class="block-38-heading h4">Mike Coolbert</h3>
-                                <p class="block-38-subheading">Sales Manager</p>
-                            </div>
-                            <div class="block-38-body">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit
-                                    distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+                                <h3 class="block-38-heading h5">Trần Nguyễn Nhật Hoài Tâm</h3>
                             </div>
                         </div>
                     </div>
