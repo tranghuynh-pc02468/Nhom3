@@ -135,28 +135,35 @@ public function getProductTopView(){
             <!-- Required meta tags -->
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        
+         <!-- Bootstrap CSS v5.2.1 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
         </head>
+        <style>
+        th, td {
+            border-collapse: collapse; 
+            border: 1px solid black;"
+        }
+        </style>
         <body>
             <div class="container">
             <div class="row mt-3">
                 <div class="col-lg-6 offset-lg-3 col-md-12 ">
                     <p>Xin chào '. $name .', <br> Đơn hàng của bạn đã được đặt thành công</p>
-                    <h5>Địa chỉ thanh toán</h5>
+                    <h5 style="font-size: 15px">Địa chỉ thanh toán</h5>
                     <div class="mb-4">
-                        <p class="mb-0">tên: '. $name .'</p>
-                        <p class="mb-0">sdt: '. $phone .'</p>
-                        <p class="mb-0">địa chỉ: '. $address .'</p>
-                        <p class="mb-0">pttt: '. $payment_method .'</p>
+                        <p class="mb-0">SĐT: '. $phone .'</p>
+                        <p class="mb-0">Địa chỉ: '. $address .'</p>
+                        <p class="mb-0">Phương thức thanh toán: '. $payment_method .'</p>
                     </div>
                     <h5 style="font-size: 15px">Chi tiết đơn hàng</h5>
                     <table style="border-collapse: collapse; border: 1px solid black;">
                         <thead>
                             <tr>
-                                <th>Tên SP</th>
-                                <th>Đơn giá</th>
-                                <th>Số lượng</th>
-                                <th>Thành tiền</th>
+                                <th style="border: 1px solid black;">Tên SP</th>
+                                <th style="border: 1px solid black;">Đơn giá</th>
+                                <th style="border: 1px solid black;">Số lượng</th>
+                                <th style="border: 1px solid black;">Thành tiền</th>
                             </tr>
                         </thead>
                         <tbody> 
@@ -166,10 +173,10 @@ public function getProductTopView(){
             $total = $total + ($item[4] * $item[5]);
             $result .= '
                             <tr>
-                                <td>'. $item[2] .' <br><small>Size: '. $item[3] .'</small></td>
-                                <td style="text-align: right">'. number_format($item[4]) .' đ</td>
-                                <td style="text-align: right">'. $item[5] .'</td>
-                                <td style="text-align: right">'. number_format($item[4] * $item[5]) .' đ</td>
+                                <td style="border: 1px solid black;">'. $item[2] .' <br><small>Size: '. $item[3] .'</small></td>
+                                <td style="border: 1px solid black; text-align: right">'. number_format($item[4]) .' đ</td>
+                                <td style="border: 1px solid black; text-align: right">'. $item[5] .'</td>
+                                <td style="border: 1px solid black; text-align: right">'. number_format($item[4] * $item[5]) .' đ</td>
                             </tr>
             ';
              $i++;
@@ -177,16 +184,16 @@ public function getProductTopView(){
 
         $result .= '
                             <tr>
-                                <td colspan="3" style="font-weight: bold; text-align: right;">Tổng tiền hàng</td>
+                                <td colspan="3" style="font-weight: bold; text-align: right; border: 1px solid black;">Tổng tiền hàng</td>
                                 <td style="text-align: right">'. number_format($total) .' đ</td>
                             </tr> 
                             <tr>
-                                <td colspan="3" style="font-weight: bold; text-align: right;">Phí vận chuyển</td>
+                                <td colspan="3" style="font-weight: bold; text-align: right; border: 1px solid black;">Phí vận chuyển</td>
                                 <td style="text-align: right">0 đ</td>
                             </tr> 
                             <tr>
-                                <td colspan="3" style="font-weight: bold; text-align: right;">Tổng cần thanh toán</td>
-                                <td style="text-align: right">'. number_format($total) .' đ</td>
+                                <td colspan="3" style="font-weight: bold; text-align: right; border: 1px solid black;">Tổng cần thanh toán</td>
+                                <td style="text-align: right; border: 1px solid black;">'. number_format($total) .' đ</td>
                             </tr>
                         </tbody>
                     </table>

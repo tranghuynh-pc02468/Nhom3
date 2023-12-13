@@ -50,6 +50,11 @@ if ($secureHash == $vnp_SecureHash) {
 
 
         }
+        $title = "Đặt hàng thành công";
+        $content = $db -> emailOder($_SESSION['user_name'], $_SESSION['order']['phone'], $_SESSION['order']['address'], $payment_method, $_SESSION['my-cart']);
+        $email = $_SESSION['user_email'];
+//            $mail = new mailer();
+        $mail->sendMail($title, $content, $email);
         unset($_SESSION['my-cart']);
         unset($_SESSION['order']);
         header('location: index.php?page=thanks');exit;
