@@ -35,6 +35,7 @@
                         if (!empty($user) && !empty($password)) {
                             // $id = $users->userid($user, $password);
                             $check = $users->userInfo($user);
+                            //So sánh password trong sql và $password người dùng nhập vô
                             if ($check && password_verify($password, $check['password'])) {
                                 $_SESSION['user_name'] = $user;
                                 $_SESSION['user_id'] = $check['id'];
